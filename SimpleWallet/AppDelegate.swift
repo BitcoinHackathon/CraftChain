@@ -21,7 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         window?.makeKeyAndVisible()
         let tabBarController = UITabBarController()
-        let viewControllers = [TopTableViewController.make(),
+        let viewControllers = [AdminViewController.make(),
+                            TopTableViewController.make(),
                                WalletViewController.make(),
                                HomeViewController.make()]
         viewControllers.forEach {

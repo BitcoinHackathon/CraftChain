@@ -1,31 +1,26 @@
 //
-//  DetailViewController.swift
+//  AdminViewController.swift
 //  SimpleWallet
 //
-//  Created by Daiki Sekiguchi on 2018/08/18.
+//  Created by Daiki Sekiguchi on 2018/08/19.
 //  Copyright © 2018年 Akifumi Fujita. All rights reserved.
 //
 
 import UIKit
 import BitcoinKit
 
-class DetailViewController: UIViewController {
-    
-    @IBOutlet weak var commentText: UITextField!
-    
-    var lockTimeString: String!
-    
+class AdminViewController: UIViewController {
+
     static func make() -> DetailViewController {
         return R.storyboard.detailViewController.instantiateInitialViewController()!
     }
 
-    @IBAction func voteAction(_ sender: Any) {
-        print("投票しました")
+    @IBAction func executeButton(_ sender: Any) {
+        // 受け取った運営の使い方
+        // UTXO集める→識別子を見て適切なものだけを送金
         
-        // TODO: targetPubKey をちゃんとハメる
-        // 運営と投票される側でマルチシグを行う
-        let multisig: Address = BCHHelper().createMultisigAddress(adminPubKey: Constant.adminPubKey, targetPubKey: Constant.adminPubKey)
-        sendCoins(toAddress: multisig, amount: Constant.voteAmount, comment: commentText.text!)
+        
+        
     }
     
     private func sendCoins(toAddress: Address, amount: Int64, comment: String) {
@@ -33,11 +28,17 @@ class DetailViewController: UIViewController {
         let changeAddress: Address = AppController.shared.wallet!.publicKey.toCashaddr()
         
         // 2. UTXOの取得
-        let legacyAddress: String = AppController.shared.wallet!.publicKey.toLegacy().description
+        // TODO: 値の入れ替え
+        // 運営者の公開鍵
+        let adminPubKey = Constant.adminPubKey
+        // 立候補者の公開鍵
+        let targetPubKey = try! Wallet(wif: "立候補者").publicKey
+        let legacyAddress: String = BCHHelper().createMultisigAddress(adminPubKey: adminPubKey, targetPubKey: targetPubKey) as! String
         APIClient().getUnspentOutputs(withAddresses: [legacyAddress], completionHandler: { [weak self] (unspentOutputs: [UnspentOutput]) in
             guard let strongSelf = self else {
                 return
             }
+            
             let utxos = unspentOutputs.map { $0.asUnspentTransaction() }
             let unsignedTx = strongSelf.createUnsignedTx(toAddress: toAddress, amount: amount, changeAddress: changeAddress, utxos: utxos, comment: comment)
             let signedTx = strongSelf.signTx(unsignedTx: unsignedTx, keys: [AppController.shared.wallet!.privateKey])
@@ -61,36 +62,21 @@ class DetailViewController: UIViewController {
         let totalAmount: Int64 = utxos.reduce(0) { $0 + $1.output.value }
         let change: Int64 = totalAmount - amount - fee
         
+        let lockScriptTo = Script(address: toAddress)!
         let lockScriptChange = Script(address: changeAddress)!
-        
-        let lockScriptTo = try! Script()
-            // 運営がunlockする場合
-            .append(.OP_IF)
-                // マルチシグでロック
-                .append(.OP_2)
-                // TODO: 値の入れ替え
-                .appendData(Constant.adminPubKey.raw)
-                .appendData(try! Wallet(wif: "立候補者").publicKey.raw)
-                .append(.OP_2)
-                .append(.OP_CHECKMULTISIG)
-            // ユーザーがunlockする場合
-            .append(.OP_ELSE)
-                // LOCKTIMEをかける
-                .appendData(BCHHelper().string2ExpiryTime(dateString: lockTimeString))
-                .append(.OP_CHECKLOCKTIMEVERIFY)
-                .append(.OP_DROP)
-                .append(.OP_HASH160)
-                // LOCKTIMEが過ぎていたら自分で開けられる
-                .appendData(AppController.shared.wallet!.publicKey.toCashaddr().data)
-                .append(.OP_EQUALVERIFY)
-                .append(.OP_CHECKSIG)
         
         let toOutput = TransactionOutput(value: amount, lockingScript: lockScriptTo.data)
         let changeOutput = TransactionOutput(value: change, lockingScript: lockScriptChange.data)
         
+        let opReturnScript = try! Script()
+            .append(.OP_RETURN)
+            .appendData(comment.data(using: .utf8)!)
+        let opReturnOutput = TransactionOutput(value: 0, lockingScript: opReturnScript.data)
+        
         // 5. UTXOとTransactionOutputを合わせて、UnsignedTransactionを作る
         let unsignedInputs = utxos.map { TransactionInput(previousOutput: $0.outpoint, signatureScript: Data(), sequence: UInt32.max) }
-        let tx = Transaction(version: 1, inputs: unsignedInputs, outputs: [toOutput, changeOutput], lockTime: 0)
+        let tx = Transaction(version: 1, inputs: unsignedInputs, outputs: [opReturnOutput, toOutput, changeOutput], lockTime: 0)
+        
         return UnsignedTransaction(tx: tx, utxos: utxos)
     }
     
@@ -104,59 +90,40 @@ class DetailViewController: UIViewController {
         // Signing
         let hashType = SighashType.BCH.ALL
         for (i, utxo) in unsignedTx.utxos.enumerated() {
-            // TODO: 運営の
-            let walletA = try! Wallet(wif: "")
+            let pubkeyHash: Data = Script.getPublicKeyHash(from: utxo.output.lockingScript)
             
-            let publicKeyA = AppController.shared.wallet!.publicKey
-            let publicKeyB = walletA.publicKey
+            let keysOfUtxo: [PrivateKey] = keys.filter { $0.publicKey().pubkeyHash == pubkeyHash }
+            guard let key = keysOfUtxo.first else {
+                continue
+            }
             
-            let redeemScript = Script(publicKeys: [publicKeyA, publicKeyB], signaturesRequired: 2)!
-            
-            // outputを作り直す
-            let output = TransactionOutput(value: utxo.output.value, lockingScript: redeemScript.data)
-            
-            // 作り直したoutputをsighashを作るときに入れる
-            let sighash: Data = transactionToSign.signatureHash(for: output, inputIndex: i, hashType: SighashType.BCH.ALL)
-            let signatureA: Data = try! Crypto.sign(sighash, privateKey: walletA.privateKey)
+            let sighash: Data = transactionToSign.signatureHash(for: utxo.output, inputIndex: i, hashType: SighashType.BCH.ALL)
+            let signature: Data = try! Crypto.sign(sighash, privateKey: key)
             let txin = inputsToSign[i]
+            let pubkey = key.publicKey()
             
-            let unlockingScript = try! Script()
-                .append(.OP_0)
-                .appendData(signatureA + UInt8(hashType))
-                .appendData(redeemScript.data)
+            // unlockScriptを作る
+            let unlockingScript = Script.buildPublicKeyUnlockingScript(signature: signature, pubkey: pubkey, hashType: hashType)
             
-            inputsToSign[i] = TransactionInput(previousOutput: txin.previousOutput, signatureScript: unlockingScript.data, sequence: txin.sequence)
+            // TODO: sequenceの更新
+            inputsToSign[i] = TransactionInput(previousOutput: txin.previousOutput, signatureScript: unlockingScript, sequence: txin.sequence)
         }
-        
         return transactionToSign
     }
-
+    
+    private func createMultisigAddress(adminPubKey: PublicKey, targetPubKey: PublicKey) -> Address {
+        let multisig = Script(publicKeys: [adminPubKey, targetPubKey], signaturesRequired: 2)!
+        return multisig.toP2SH().standardAddress(network: .testnet)!
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        
-        lockTimeString = "2018-08-20 18:00:00"
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

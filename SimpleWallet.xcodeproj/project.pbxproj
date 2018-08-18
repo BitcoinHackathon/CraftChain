@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		09B7BF5121284D9B00D1232D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B7BF5021284D9B00D1232D /* DetailViewController.swift */; };
 		09B7BF5321284DA600D1232D /* DetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09B7BF5221284DA600D1232D /* DetailViewController.storyboard */; };
+		09B7BF5621288DA400D1232D /* AdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B7BF5521288DA400D1232D /* AdminViewController.swift */; };
+		09B7BF5821288DB100D1232D /* AdminViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09B7BF5721288DB100D1232D /* AdminViewController.storyboard */; };
+		09B7BF5A2128926800D1232D /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B7BF592128926800D1232D /* Constant.swift */; };
+		09B7BF5C212892E600D1232D /* BCHHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B7BF5B212892E600D1232D /* BCHHelper.swift */; };
 		0C26AB7B2126C59E00170732 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C26AB7A2126C59E00170732 /* AppDelegate.swift */; };
 		0C26AB822126C59F00170732 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C26AB812126C59F00170732 /* Assets.xcassets */; };
 		0C26AB852126C59F00170732 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C26AB832126C59F00170732 /* LaunchScreen.storyboard */; };
@@ -43,6 +47,10 @@
 /* Begin PBXFileReference section */
 		09B7BF5021284D9B00D1232D /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		09B7BF5221284DA600D1232D /* DetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailViewController.storyboard; sourceTree = "<group>"; };
+		09B7BF5521288DA400D1232D /* AdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewController.swift; sourceTree = "<group>"; };
+		09B7BF5721288DB100D1232D /* AdminViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AdminViewController.storyboard; sourceTree = "<group>"; };
+		09B7BF592128926800D1232D /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		09B7BF5B212892E600D1232D /* BCHHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BCHHelper.swift; sourceTree = "<group>"; };
 		0C26AB772126C59E00170732 /* SimpleWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C26AB7A2126C59E00170732 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0C26AB812126C59F00170732 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -99,6 +107,15 @@
 			path = DetailView;
 			sourceTree = "<group>";
 		};
+		09B7BF5421288D7E00D1232D /* AdminView */ = {
+			isa = PBXGroup;
+			children = (
+				09B7BF5521288DA400D1232D /* AdminViewController.swift */,
+				09B7BF5721288DB100D1232D /* AdminViewController.storyboard */,
+			);
+			path = AdminView;
+			sourceTree = "<group>";
+		};
 		0C26AB6E2126C59E00170732 = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +162,7 @@
 		6E5E3C6F21282E54005042F2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				09B7BF5421288D7E00D1232D /* AdminView */,
 				09B7BF4F21284D7E00D1232D /* DetailView */,
 				6E61F59A21285775007C696D /* Top */,
 				A04EA51321284A2600709549 /* AddChoiceView */,
@@ -183,6 +201,8 @@
 				0C26AB902126C5BB00170732 /* MockPlayGround.swift */,
 				A04EA5072128320000709549 /* QRCoder.swift */,
 				6E61F5A321285D3E007C696D /* PostManager.swift */,
+				09B7BF592128926800D1232D /* Constant.swift */,
+				09B7BF5B212892E600D1232D /* BCHHelper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -322,6 +342,7 @@
 			files = (
 				0C26AB9B2126C5BB00170732 /* Main.storyboard in Resources */,
 				A04EA51721284A6F00709549 /* AddChoiceViewController.storyboard in Resources */,
+				09B7BF5821288DB100D1232D /* AdminViewController.storyboard in Resources */,
 				A04EA510212834A500709549 /* PostViewController.storyboard in Resources */,
 				09B7BF5321284DA600D1232D /* DetailViewController.storyboard in Resources */,
 				0C26AB852126C59F00170732 /* LaunchScreen.storyboard in Resources */,
@@ -410,8 +431,11 @@
 				0C26AB9C2126C5BB00170732 /* Transaction.swift in Sources */,
 				6E5E3C7421282EFE005042F2 /* APIClient.swift in Sources */,
 				0C26AB992126C5BB00170732 /* MockPlayGround.swift in Sources */,
+				09B7BF5C212892E600D1232D /* BCHHelper.swift in Sources */,
 				6E61F59D212857C0007C696D /* TopTableViewCell.swift in Sources */,
+				09B7BF5A2128926800D1232D /* Constant.swift in Sources */,
 				0C26AB7B2126C59E00170732 /* AppDelegate.swift in Sources */,
+				09B7BF5621288DA400D1232D /* AdminViewController.swift in Sources */,
 				A04EA512212834B400709549 /* PostViewModel.swift in Sources */,
 				0C26AB9D2126C5BB00170732 /* AppController.swift in Sources */,
 				A04EA5082128320000709549 /* QRCoder.swift in Sources */,
