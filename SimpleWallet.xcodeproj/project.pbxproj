@@ -23,6 +23,7 @@
 		A0C3B6EE2128146D001BE26A /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0C3B66D2128145F001BE26A /* RxCocoa.framework */; };
 		A0C3B6EF2128146D001BE26A /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0C3B66E2128145F001BE26A /* RxSwift.framework */; };
 		A0C3B6F12128146D001BE26A /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0C3B66B2128145F001BE26A /* Swinject.framework */; };
+		A0C3B72221281F82001BE26A /* QRCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C3B72121281F82001BE26A /* QRCoder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1530,6 +1531,7 @@
 		A0C3B6842128145F001BE26A /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RxCocoa.framework; sourceTree = "<group>"; };
 		A0C3B6852128145F001BE26A /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RxSwift.framework; sourceTree = "<group>"; };
 		A0C3B6862128145F001BE26A /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RxBlocking.framework; sourceTree = "<group>"; };
+		A0C3B72121281F82001BE26A /* QRCoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCoder.swift; sourceTree = "<group>"; };
 		CAD7D82D5E4D3F11C2522164 /* Pods-SimpleWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleWallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleWallet/Pods-SimpleWallet.release.xcconfig"; sourceTree = "<group>"; };
 		CBDF77ECDDFAEEAA4F81B711 /* Pods-SimpleWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleWallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleWallet/Pods-SimpleWallet.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1572,6 +1574,7 @@
 			children = (
 				A0C3B6F8212815EA001BE26A /* DI */,
 				A0C3B6F221281532001BE26A /* View */,
+				A0C3B6FE21281DCC001BE26A /* Utility */,
 				0C26AB7A2126C59E00170732 /* AppDelegate.swift */,
 				0C26AB8F2126C5BB00170732 /* APIClient.swift */,
 				0C26AB942126C5BB00170732 /* AppController.swift */,
@@ -3889,6 +3892,14 @@
 			path = DI;
 			sourceTree = "<group>";
 		};
+		A0C3B6FE21281DCC001BE26A /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				A0C3B72121281F82001BE26A /* QRCoder.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 		AA85D59BF3AC78614C8D5D12 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -4271,11 +4282,13 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-SimpleWallet/Pods-SimpleWallet-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BitcoinKit/BitcoinKit.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
+				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BitcoinKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -4291,6 +4304,7 @@
 			files = (
 				0C26AB972126C5BB00170732 /* SendViewController.swift in Sources */,
 				0C26AB962126C5BB00170732 /* UnspentOutput.swift in Sources */,
+				A0C3B72221281F82001BE26A /* QRCoder.swift in Sources */,
 				0C26AB9C2126C5BB00170732 /* Transaction.swift in Sources */,
 				0C26AB992126C5BB00170732 /* MockPlayGround.swift in Sources */,
 				0C26AB7B2126C59E00170732 /* AppDelegate.swift in Sources */,

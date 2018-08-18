@@ -14,5 +14,6 @@ target 'SimpleWallet' do
   # Pods for pre_bitcoin_hackathon
   pod 'BitcoinKit'
   pod 'KeychainAccess'
+  pod 'R.swift'
 
 end
