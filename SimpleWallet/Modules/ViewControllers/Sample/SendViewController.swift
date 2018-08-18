@@ -11,15 +11,15 @@ import BitcoinKit
 
 class SendViewController: UIViewController {
     
-    @IBAction func
-        sendButtonTapped(_ sender: Any) {
+    @IBOutlet weak var textField: UITextField!
+    @IBAction func sendButtonTapped(_ sender: Any) {
         // 送金をする
-        
+        let address: Address = try! AddressFactory.create("bchtest:qpytf7xczxf2mxa3gd6s30rthpts0tmtgyw8ud2sy3")
+        sendCoins(toAddress: address, amount: 300)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     private func sendCoins(toAddress: Address, amount: Int64) {
@@ -67,6 +67,11 @@ class SendViewController: UIViewController {
         // 上のBitcoin Scriptを自分で書いてみよー！
         
         // OP_RETURNのOutputを作成する
+        let message = textField.text ?? ""
+        let opReturnScript = try! Script()
+            .append(.OP_RETURN)
+            .appendData(message.data(using: .utf8)!)
+        let opReturnOutput = TransactionOutput(value: 0, lockingScript: opReturnScript.data)
         
         // OP_CLTVのOutputを作成する    
         
@@ -75,7 +80,12 @@ class SendViewController: UIViewController {
         
         // 5. UTXOとTransactionOutputを合わせて、UnsignedTransactionを作る
         let unsignedInputs = utxos.map { TransactionInput(previousOutput: $0.outpoint, signatureScript: Data(), sequence: UInt32.max) }
-        let tx = Transaction(version: 1, inputs: unsignedInputs, outputs: [toOutput, changeOutput], lockTime: 0)
+
+//        let tx = Transaction(version: 1, inputs: unsignedInputs, outputs: [toOutput, changeOutput], lockTime: 0)
+
+        // txのoutputsにopReturnOutputを入れる
+        let tx = Transaction(version: 1, inputs: unsignedInputs, outputs: [opReturnOutput, changeOutput], lockTime: 0)
+
         return UnsignedTransaction(tx: tx, utxos: utxos)
     }
     

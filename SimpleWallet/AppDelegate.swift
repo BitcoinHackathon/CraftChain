@@ -21,8 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         window?.makeKeyAndVisible()
         let tabBarController = UITabBarController()
-        let viewControllers = [ UINavigationController(rootViewController: TopTableViewController.make()),
+        let viewControllers = [UINavigationController(rootViewController: TopTableViewController.make()),
                                WalletViewController.make(),
+                               CommentListTableViewController.make(),
                                HomeViewController.make(),
                                PostViewController.make()]
         viewControllers.forEach {
