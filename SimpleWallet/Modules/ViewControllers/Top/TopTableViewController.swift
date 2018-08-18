@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class TopTableViewController: UITableViewController {
     static func make() -> TopTableViewController {
@@ -16,11 +17,20 @@ class TopTableViewController: UITableViewController {
     }
     
     private var posts: [Post] = []
+    private let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.clearsSelectionOnViewWillAppear = false
         tableView.register(R.nib.topTableViewCell)
+
+        let item = UIBarButtonItem(barButtonSystemItem: .action, target: nil, action: nil)
+        navigationItem.leftBarButtonItem = item
+        item.rx.tap
+            .subscribe(onNext: { [weak self] in
+                guard let me = self else { return }
+                me.navigationController?.pushViewController(AdminViewController.make(), animated: true)
+            }).disposed(by: disposeBag)
     }
 
     override func viewWillAppear(_ animated: Bool) {

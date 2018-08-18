@@ -25,7 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                WalletViewController.make(),
                                CommentListTableViewController.make(),
                                HomeViewController.make(),
-                               PostViewController.make()]
+                               PostViewController.make(),
+                               AdminViewController.make()]
         viewControllers.forEach {
             tabBarController.addChildViewController($0)
         }

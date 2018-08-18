@@ -10,16 +10,15 @@ import UIKit
 import BitcoinKit
 
 class AdminViewController: UIViewController {
-
-    static func make() -> DetailViewController {
-        return R.storyboard.detailViewController.instantiateInitialViewController()!
+    static func make() -> AdminViewController {
+        return R.storyboard.adminViewController.instantiateInitialViewController()!
     }
 
     @IBAction func executeButton(_ sender: Any) {
         // 受け取った運営の使い方
         // UTXO集める→識別子を見て適切なものだけを送金
-        // TODO: targetPubKey をちゃんとハメる
-        let multisig: Address = BCHHelper().createMultisigAddress(adminPubKey: Constant.adminPubKey, targetPubKey: Constant.adminPubKey)
+        let multisig: Address = BCHHelper().createMultisigAddress(adminPubKey: Constant.adminPubKey,
+                                                                  targetPubKey: Constant.targetPubKey)
         sendCoins(toAddress: multisig, amount: Constant.voteAmount)
     }
     
@@ -30,10 +29,9 @@ class AdminViewController: UIViewController {
         let changeAddress: Address = AppController.shared.wallet!.publicKey.toCashaddr()
         
         // 2. UTXOの取得
-        // TODO: 値の入れ替え
         // 立候補者の公開鍵
-        let targetPubKey = try! Wallet(wif: "立候補者").publicKey
-        let legacyAddress: String = BCHHelper().createMultisigAddress(adminPubKey: Constant.adminPubKey, targetPubKey: targetPubKey) as! String
+        let legacyAddress: String = BCHHelper().createMultisigAddress(adminPubKey: Constant.adminPubKey,
+                                                                      targetPubKey: Constant.targetPubKey).base58
         APIClient().getUnspentOutputs(withAddresses: [legacyAddress], completionHandler: { [weak self] (unspentOutputs: [UnspentOutput]) in
             guard let strongSelf = self else {
                 return
@@ -85,12 +83,10 @@ class AdminViewController: UIViewController {
         // Signing
         let hashType = SighashType.BCH.ALL
         for (i, utxo) in unsignedTx.utxos.enumerated() {
-            let targetWallet = try! Wallet(wif: "cP1uBo6EsiBayFLu3E5mst5eDg7KNGRJbndbckRfV14votPZu4oU")
+            let targetWallet = try! Wallet(wif: "cP1uBo6EsiBayFLu3E5mst5eDg7KNGRJbndbckRfV14votPZu4oU") //とりあえず
             
             let adminPubKey = Constant.adminPubKey
-            // TODO: SingしたときのPubKeyを使わないと開かない
-            // TODO: 値を変更する必要がある
-            let targetPubKey = targetWallet.publicKey
+            let targetPubKey = Constant.targetPubKey
             
             let redeemScript = Script(publicKeys: [adminPubKey, targetPubKey], signaturesRequired: 2)!
             

@@ -15,7 +15,7 @@ class SendViewController: UIViewController {
     @IBAction func sendButtonTapped(_ sender: Any) {
         // 送金をする
         let address: Address = try! AddressFactory.create("bchtest:qqd4tpejz3n3psvlhdv8v095jtl7mc9t2qwt6cnh4r")
-        sendCoins(toAddress: address, amount: 1000000)
+        sendCoins(toAddress: address, amount: 10000000)
     }
     
     override func viewDidLoad() {
@@ -72,7 +72,7 @@ class SendViewController: UIViewController {
 //            .append(.OP_RETURN)
 //            .appendData(message.data(using: .utf8)!)
 //        let opReturnOutput = TransactionOutput(value: 0, lockingScript: opReturnScript.data)
-        
+
         // OP_CLTVのOutputを作成する    
         
         let toOutput = TransactionOutput(value: amount, lockingScript: lockScriptTo.data)
