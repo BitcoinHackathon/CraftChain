@@ -1,0 +1,41 @@
+PODS:
+  - BitcoinKit (1.0.1)
+  - KeychainAccess (3.1.1)
+  - R.swift (4.0.0):
+    - R.swift.Library (~> 4.0.0)
+  - R.swift.Library (4.0.0)
+  - RxCocoa (4.2.0):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.2.0)
+  - Swinject (2.4.1)
+
+DEPENDENCIES:
+  - BitcoinKit
+  - KeychainAccess
+  - R.swift
+  - RxCocoa
+  - RxSwift
+  - Swinject
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - BitcoinKit
+    - KeychainAccess
+    - R.swift
+    - R.swift.Library
+    - RxCocoa
+    - RxSwift
+    - Swinject
+
+SPEC CHECKSUMS:
+  BitcoinKit: c23a32263524ba0f2bfcc3aa7a90ed4537856f88
+  KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
+  R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
+  R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
+  RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
+  RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
+  Swinject: f7f15a9672e99328c1f07f277091087917215700
+
+PODFILE CHECKSUM: 84753a74881f2501329c9aae384ba1da2da6ffbc
+
+COCOAPODS: 1.5.3

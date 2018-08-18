@@ -13,12 +13,14 @@
 		0C26AB952126C5BB00170732 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C26AB8C2126C5BB00170732 /* Extension.swift */; };
 		0C26AB962126C5BB00170732 /* UnspentOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C26AB8D2126C5BB00170732 /* UnspentOutput.swift */; };
 		0C26AB972126C5BB00170732 /* SendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C26AB8E2126C5BB00170732 /* SendViewController.swift */; };
-		0C26AB982126C5BB00170732 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C26AB8F2126C5BB00170732 /* APIClient.swift */; };
 		0C26AB992126C5BB00170732 /* MockPlayGround.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C26AB902126C5BB00170732 /* MockPlayGround.swift */; };
 		0C26AB9A2126C5BB00170732 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C26AB912126C5BB00170732 /* HomeViewController.swift */; };
 		0C26AB9B2126C5BB00170732 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C26AB922126C5BB00170732 /* Main.storyboard */; };
 		0C26AB9C2126C5BB00170732 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C26AB932126C5BB00170732 /* Transaction.swift */; };
 		0C26AB9D2126C5BB00170732 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C26AB942126C5BB00170732 /* AppController.swift */; };
+		5F387783DCF7F5AE6597CEA2 /* Pods_SimpleWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3254F223206616E330E2587D /* Pods_SimpleWallet.framework */; };
+		6E5E3C6D21282E47005042F2 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5E3C6C21282E46005042F2 /* R.generated.swift */; };
+		6E5E3C7421282EFE005042F2 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5E3C7321282EFE005042F2 /* APIClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,12 +32,16 @@
 		0C26AB8C2126C5BB00170732 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		0C26AB8D2126C5BB00170732 /* UnspentOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnspentOutput.swift; sourceTree = "<group>"; };
 		0C26AB8E2126C5BB00170732 /* SendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendViewController.swift; sourceTree = "<group>"; };
-		0C26AB8F2126C5BB00170732 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		0C26AB902126C5BB00170732 /* MockPlayGround.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockPlayGround.swift; sourceTree = "<group>"; };
 		0C26AB912126C5BB00170732 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		0C26AB922126C5BB00170732 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		0C26AB932126C5BB00170732 /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		0C26AB942126C5BB00170732 /* AppController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
+		3254F223206616E330E2587D /* Pods_SimpleWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E5E3C6C21282E46005042F2 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = SimpleWallet/R.generated.swift; sourceTree = SOURCE_ROOT; };
+		6E5E3C7321282EFE005042F2 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		764A8056BEFC01CD8FD81CA9 /* Pods-SimpleWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleWallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleWallet/Pods-SimpleWallet.release.xcconfig"; sourceTree = "<group>"; };
+		E5ECAEB1857BAAF4B13C99D0 /* Pods-SimpleWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleWallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleWallet/Pods-SimpleWallet.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F387783DCF7F5AE6597CEA2 /* Pods_SimpleWallet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +61,8 @@
 			children = (
 				0C26AB792126C59E00170732 /* SimpleWallet */,
 				0C26AB782126C59E00170732 /* Products */,
+				B9FA8277D003BE58DC53CDBC /* Pods */,
+				E5BA05084BE86A188D465177 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,21 +77,79 @@
 		0C26AB792126C59E00170732 /* SimpleWallet */ = {
 			isa = PBXGroup;
 			children = (
+				6E5E3C6C21282E46005042F2 /* R.generated.swift */,
+				6E5E3C6E21282E4E005042F2 /* Modules */,
 				0C26AB7A2126C59E00170732 /* AppDelegate.swift */,
-				0C26AB8F2126C5BB00170732 /* APIClient.swift */,
-				0C26AB942126C5BB00170732 /* AppController.swift */,
-				0C26AB8C2126C5BB00170732 /* Extension.swift */,
-				0C26AB912126C5BB00170732 /* HomeViewController.swift */,
-				0C26AB902126C5BB00170732 /* MockPlayGround.swift */,
-				0C26AB8E2126C5BB00170732 /* SendViewController.swift */,
-				0C26AB932126C5BB00170732 /* Transaction.swift */,
-				0C26AB8D2126C5BB00170732 /* UnspentOutput.swift */,
 				0C26AB922126C5BB00170732 /* Main.storyboard */,
 				0C26AB812126C59F00170732 /* Assets.xcassets */,
 				0C26AB832126C59F00170732 /* LaunchScreen.storyboard */,
 				0C26AB862126C59F00170732 /* Info.plist */,
 			);
 			path = SimpleWallet;
+			sourceTree = "<group>";
+		};
+		6E5E3C6E21282E4E005042F2 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				6E5E3C7221282E7D005042F2 /* Utilities */,
+				6E5E3C7121282E6B005042F2 /* Models */,
+				6E5E3C6F21282E54005042F2 /* ViewControllers */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		6E5E3C6F21282E54005042F2 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				6E5E3C7021282E5E005042F2 /* Sample */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		6E5E3C7021282E5E005042F2 /* Sample */ = {
+			isa = PBXGroup;
+			children = (
+				0C26AB912126C5BB00170732 /* HomeViewController.swift */,
+				0C26AB8E2126C5BB00170732 /* SendViewController.swift */,
+			);
+			path = Sample;
+			sourceTree = "<group>";
+		};
+		6E5E3C7121282E6B005042F2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0C26AB932126C5BB00170732 /* Transaction.swift */,
+				0C26AB8D2126C5BB00170732 /* UnspentOutput.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		6E5E3C7221282E7D005042F2 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				6E5E3C7321282EFE005042F2 /* APIClient.swift */,
+				0C26AB942126C5BB00170732 /* AppController.swift */,
+				0C26AB8C2126C5BB00170732 /* Extension.swift */,
+				0C26AB902126C5BB00170732 /* MockPlayGround.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		B9FA8277D003BE58DC53CDBC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E5ECAEB1857BAAF4B13C99D0 /* Pods-SimpleWallet.debug.xcconfig */,
+				764A8056BEFC01CD8FD81CA9 /* Pods-SimpleWallet.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E5BA05084BE86A188D465177 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3254F223206616E330E2587D /* Pods_SimpleWallet.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -92,9 +159,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0C26AB892126C59F00170732 /* Build configuration list for PBXNativeTarget "SimpleWallet" */;
 			buildPhases = (
+				AAD9C1FC7AE689884C5BC2F3 /* [CP] Check Pods Manifest.lock */,
+				6E5E3C6A21282DED005042F2 /* ShellScript */,
 				0C26AB732126C59E00170732 /* Sources */,
 				0C26AB742126C59E00170732 /* Frameworks */,
 				0C26AB752126C59E00170732 /* Resources */,
+				EA9EAA81472B436B9C0BB36C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -151,6 +221,72 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6E5E3C6A21282DED005042F2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT\"\n\n";
+		};
+		AAD9C1FC7AE689884C5BC2F3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SimpleWallet-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EA9EAA81472B436B9C0BB36C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SimpleWallet/Pods-SimpleWallet-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BitcoinKit/BitcoinKit.framework",
+				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
+				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BitcoinKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swinject.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SimpleWallet/Pods-SimpleWallet-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0C26AB732126C59E00170732 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -159,10 +295,11 @@
 				0C26AB972126C5BB00170732 /* SendViewController.swift in Sources */,
 				0C26AB962126C5BB00170732 /* UnspentOutput.swift in Sources */,
 				0C26AB9C2126C5BB00170732 /* Transaction.swift in Sources */,
+				6E5E3C7421282EFE005042F2 /* APIClient.swift in Sources */,
 				0C26AB992126C5BB00170732 /* MockPlayGround.swift in Sources */,
 				0C26AB7B2126C59E00170732 /* AppDelegate.swift in Sources */,
 				0C26AB9D2126C5BB00170732 /* AppController.swift in Sources */,
-				0C26AB982126C5BB00170732 /* APIClient.swift in Sources */,
+				6E5E3C6D21282E47005042F2 /* R.generated.swift in Sources */,
 				0C26AB9A2126C5BB00170732 /* HomeViewController.swift in Sources */,
 				0C26AB952126C5BB00170732 /* Extension.swift in Sources */,
 			);
@@ -298,6 +435,7 @@
 		};
 		0C26AB8A2126C59F00170732 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E5ECAEB1857BAAF4B13C99D0 /* Pods-SimpleWallet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -316,6 +454,7 @@
 		};
 		0C26AB8B2126C59F00170732 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 764A8056BEFC01CD8FD81CA9 /* Pods-SimpleWallet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
