@@ -19,32 +19,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="kHS-ZW-k7b">
-                                <rect key="frame" x="16" y="36" width="64" height="64"/>
+                                <rect key="frame" x="16" y="131" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="〇〇大学" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FAf-VO-uj9">
-                                <rect key="frame" x="88" y="36" width="70" height="21"/>
+                                <rect key="frame" x="88" y="131" width="70" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="8/18 14:23" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fuv-gQ-q1p">
-                                <rect key="frame" x="166" y="36" width="82" height="21"/>
+                                <rect key="frame" x="166" y="131" width="202" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="〇〇大学第26回ミスコンです。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uV7-J7-ReX">
-                                <rect key="frame" x="88" y="65" width="246" height="21"/>
+                                <rect key="frame" x="88" y="160" width="246" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uTa-x3-tfH">
-                                <rect key="frame" x="156.5" y="152" width="62" height="30"/>
+                                <rect key="frame" x="156.5" y="247" width="62" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="佐藤さん"/>
                                 <connections>
@@ -52,36 +52,36 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Tf-wT-1Di">
-                                <rect key="frame" x="156" y="190" width="62" height="30"/>
+                                <rect key="frame" x="156" y="285" width="62" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="田中さん"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vR6-ZR-FTg">
-                                <rect key="frame" x="156" y="235" width="62" height="30"/>
+                                <rect key="frame" x="156" y="330" width="62" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="鈴木さん"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IyP-ZM-D39">
-                                <rect key="frame" x="156" y="273" width="62" height="30"/>
+                                <rect key="frame" x="156" y="368" width="62" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="清水さん"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="300票" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRR-0U-Fui">
-                                <rect key="frame" x="31" y="421" width="49" height="21"/>
+                                <rect key="frame" x="31" y="516" width="49" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="残り1日と12時間" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="anX-OQ-m5L">
-                                <rect key="frame" x="123" y="421" width="129" height="21"/>
+                                <rect key="frame" x="123" y="516" width="252" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RXj-dg-e6z">
-                                <rect key="frame" x="88" y="318" width="200" height="30"/>
+                                <rect key="frame" x="88" y="413" width="200" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -92,7 +92,16 @@
                         <viewLayoutGuide key="safeArea" id="Vg4-im-3zk"/>
                     </view>
                     <connections>
+                        <outlet property="choice1Button" destination="uTa-x3-tfH" id="bYE-U8-9at"/>
+                        <outlet property="choice2Button" destination="7Tf-wT-1Di" id="b4A-fa-EYf"/>
+                        <outlet property="choice3Button" destination="vR6-ZR-FTg" id="ZoE-0a-mx2"/>
+                        <outlet property="choice4Button" destination="IyP-ZM-D39" id="ycw-6N-gc3"/>
                         <outlet property="commentText" destination="RXj-dg-e6z" id="coa-Ur-e5I"/>
+                        <outlet property="dateLabel" destination="fuv-gQ-q1p" id="xC2-OX-HSg"/>
+                        <outlet property="descriptionLabel" destination="uV7-J7-ReX" id="nRY-Tc-Svd"/>
+                        <outlet property="remainDateLabel" destination="anX-OQ-m5L" id="Ykk-zC-581"/>
+                        <outlet property="userNameLabel" destination="FAf-VO-uj9" id="eyw-gl-Jne"/>
+                        <outlet property="voteCountLabel" destination="VRR-0U-Fui" id="NWc-pe-DaP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O84-1v-MZG" userLabel="First Responder" sceneMemberID="firstResponder"/>
