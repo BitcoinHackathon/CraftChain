@@ -45,7 +45,8 @@ class TopTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = posts[indexPath.row]
-        _ = item
+        let post = posts[indexPath.row]
+        let vc = DetailViewController.make(post: post)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

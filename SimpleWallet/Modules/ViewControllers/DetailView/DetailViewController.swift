@@ -10,11 +10,24 @@ import UIKit
 import BitcoinKit
 
 class DetailViewController: UIViewController {
-    
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var commentText: UITextField!
-    
-    static func make() -> DetailViewController {
-        return R.storyboard.detailViewController.instantiateInitialViewController()!
+    @IBOutlet weak var choice1Button: UIButton!
+    @IBOutlet weak var choice2Button: UIButton!
+    @IBOutlet weak var choice3Button: UIButton!
+    @IBOutlet weak var choice4Button: UIButton!
+    @IBOutlet weak var voteCountLabel: UILabel!
+    @IBOutlet weak var remainDateLabel: UILabel!
+
+    private var post: Post!
+    private var updateTimer: Timer!
+
+    static func make(post: Post) -> DetailViewController {
+        let vc = R.storyboard.detailViewController.instantiateInitialViewController()!
+        vc.post = post
+        return vc
     }
 
     @IBAction func voteAction(_ sender: Any) {
@@ -141,24 +154,33 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setup(post: post)
+        updateTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
+            guard let me = self else { return }
+            me.setup(post: me.post)
+        }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func setup(post: Post) {
+        userNameLabel.text = post.userName
+
+        let diff = Int(post.deadline.timeIntervalSince(Date()))
+        let day = diff/24/60/60
+        let hour = diff/60/60
+        let min = diff/60 - hour*60
+        let sec = diff - min*60 - hour*60*60
+
+        dateLabel.text = Post.dateFormatter.string(from: post.createdAt)
+        descriptionLabel.text = post.description
+        remainDateLabel.text = "残り\(day)日と\(hour)時間\(min)分\(sec)秒"
+        choice1Button.setTitle(post.choices.get(at: 0)?.description, for: .normal)
+        choice2Button.setTitle(post.choices.get(at: 1)?.description, for: .normal)
+        choice3Button.setTitle(post.choices.get(at: 2)?.description, for: .normal)
+        choice4Button.setTitle(post.choices.get(at: 3)?.description, for: .normal)
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        updateTimer.invalidate()
     }
-    */
-
 }
