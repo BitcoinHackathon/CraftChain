@@ -20,4 +20,19 @@ struct Post {
     let deadline: Date
 
     var voteCount = 0
+
+    static let dateFormatter: DateFormatter = {
+        let df = DateFormatter()
+        df.dateFormat = "MM/dd HH:mm:ss"
+        return df
+    }()
+}
+
+extension Array where Element == Post.Choice {
+    func get(at index: Int) -> Element? {
+        if index < count {
+            return self[index]
+        }
+        return nil
+    }
 }

@@ -21,10 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         window?.makeKeyAndVisible()
         let tabBarController = UITabBarController()
-        let viewControllers = [AdminViewController.make(),
-                            TopTableViewController.make(),
+        let viewControllers = [ UINavigationController(rootViewController: TopTableViewController.make()),
                                WalletViewController.make(),
-                               HomeViewController.make()]
+                               HomeViewController.make(),
+                               PostViewController.make()]
         viewControllers.forEach {
             tabBarController.addChildViewController($0)
         }

@@ -21,11 +21,13 @@ final class PostViewModel {
 
     struct Output {
         let presentAddChoiceView: Driver<Void>
+        let registerVoteContents: Driver<Void>
     }
 
     func build(input: Input) -> Output {
         return Output(
-            presentAddChoiceView: input.addChoiceButtonDidTap
+            presentAddChoiceView: input.addChoiceButtonDidTap,
+            registerVoteContents: input.postButtonDidTap
         )
     }
 }
