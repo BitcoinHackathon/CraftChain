@@ -11,7 +11,6 @@ import RxCocoa
 
 final class PostViewModel {
 
-    
     struct Input {
         let contentsTextFieldInput: Driver<String>
         let datePicker: Driver<Date>

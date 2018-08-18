@@ -16,10 +16,10 @@ class PostViewController: UIViewController {
         return viewController
     }
     
-    @IBOutlet weak var contentsTextField: UITextView!
-    @IBOutlet weak var datePicker: UIDatePicker!
-    @IBOutlet weak var addChoice: UIButton!
-    @IBOutlet weak var postButton: UIButton!
+    @IBOutlet private weak var contentsTextField: UITextView!
+    @IBOutlet private weak var datePicker: UIDatePicker!
+    @IBOutlet private weak var addChoice: UIButton!
+    @IBOutlet private weak var postButton: UIButton!
     
     private let disposeBag = DisposeBag()
     private let viewModel = PostViewModel()
@@ -45,12 +45,15 @@ class PostViewController: UIViewController {
         output
             .presentAddChoiceView
             .drive(onNext: { [weak self] in
-                
+                self?.presentAddChoiceView()
             })
             .disposed(by: disposeBag)
     }
 }
 
 extension PostViewController {
-    
+    private func presentAddChoiceView() {
+        let viewController = AddChoiceViewController.make()
+        navigationController?.pushViewController(viewController, animated: true)
+    }
 }
