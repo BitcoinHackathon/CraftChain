@@ -10,6 +10,11 @@ import UIKit
 import BitcoinKit
 
 class HomeViewController: UITableViewController {
+    static func make() -> UIViewController {
+        let vc = R.storyboard.main.instantiateInitialViewController()!
+        vc.title = "Example"
+        return vc
+    }
     
     var wallet: Wallet?
     var transactions = [CodableTx]()
