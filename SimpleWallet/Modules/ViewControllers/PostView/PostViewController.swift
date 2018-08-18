@@ -17,8 +17,8 @@ class PostViewController: UIViewController {
         viewController.title = "投票の作成"
         return viewController
     }
-    
-    @IBOutlet private weak var contentsTextField: UITextView!
+
+    @IBOutlet weak var contentsTextField: UITextField!
     @IBOutlet private weak var datePicker: UIDatePicker!
     @IBOutlet private weak var addChoice: UIButton!
     @IBOutlet private weak var postButton: UIButton!

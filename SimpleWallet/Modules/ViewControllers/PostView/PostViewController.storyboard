@@ -18,20 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LpC-WM-idJ">
-                                <rect key="frame" x="67" y="127" width="240" height="83"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.88196404333867406" green="1" blue="0.98107158496677738" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="投票内容の入力" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cED-sK-9pR">
-                                <rect key="frame" x="126" y="91" width="122" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NM4-l2-Acq">
                                 <rect key="frame" x="267" y="329" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -48,10 +34,10 @@
                                 </date>
                                 <locale key="locale" localeIdentifier="ja"/>
                             </datePicker>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ww4-Lg-tfR">
-                                <rect key="frame" x="149" y="577" width="77" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ww4-Lg-tfR">
+                                <rect key="frame" x="160" y="564" width="56" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="投稿の追加"/>
+                                <state key="normal" image="check"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="aaa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbc-4T-vJg">
                                 <rect key="frame" x="46" y="246" width="209" height="21"/>
@@ -81,6 +67,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="投票内容の入力" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xdh-Xo-ZV9">
+                                <rect key="frame" x="64" y="120" width="241" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="FKn-lc-9VQ"/>
@@ -92,7 +85,7 @@
                         <outlet property="choiceLabel2" destination="lvc-WA-uAd" id="7gh-Rn-ez7"/>
                         <outlet property="choiceLabel3" destination="g2q-jv-IwU" id="weG-qR-P0s"/>
                         <outlet property="choiceLabel4" destination="ieO-yJ-CZ7" id="B2J-jE-4Md"/>
-                        <outlet property="contentsTextField" destination="LpC-WM-idJ" id="Szq-sJ-FqH"/>
+                        <outlet property="contentsTextField" destination="Xdh-Xo-ZV9" id="gxA-jh-uL1"/>
                         <outlet property="datePicker" destination="13p-LX-RN1" id="x8G-Dy-18x"/>
                         <outlet property="postButton" destination="Ww4-Lg-tfR" id="cTl-sv-MtH"/>
                     </connections>
@@ -120,4 +113,7 @@
             <point key="canvasLocation" x="360.80000000000001" y="211.84407796101951"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="check" width="56" height="56"/>
+    </resources>
 </document>
