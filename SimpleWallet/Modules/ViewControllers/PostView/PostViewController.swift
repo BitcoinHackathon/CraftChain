@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 class PostViewController: UIViewController {
-
+    
     static func make() -> UIViewController {
         let viewController = R.storyboard.postViewController().instantiateInitialViewController()!
         viewController.title = "投票の作成"
@@ -32,24 +32,29 @@ class PostViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configure()
-        bindViewModel()
-    }
-
-    private func configure() {
-        //TODO:TextFieldのdelegate処理を行う
-        hiddenLabel()
-    }
-
-    private func hiddenLabel() {
         choiceLabel1.isHidden = true
         choiceLabel2.isHidden = true
         choiceLabel3.isHidden = true
         choiceLabel4.isHidden = true
-        let value = viewModel.choices.value
+        bindViewModel()
+    }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configure()
+    }
+    
+    private func configure() {
+        //TODO:TextFieldのdelegate処理を行う
+        hiddenLabel()
+    }
+    
+    private func hiddenLabel() {
+        let value = viewModel.choices.value
+        
         switch value.count {
-        case 0: return
+        case 0:
+            return
         case 1:
             choiceLabel1.isHidden = false
             choiceLabel1.text = value[0].description
@@ -79,7 +84,18 @@ class PostViewController: UIViewController {
         output
             .presentAddChoiceView
             .drive(onNext: { [weak self] in
-                self?.presentAddChoiceView()
+                guard let wself = self else { return }
+                wself.presentAddChoiceView()
+            })
+            .disposed(by: disposeBag)
+        
+        output
+            .registerVoteContents
+            .withLatestFrom(viewModel.choices.asDriver(onErrorDriveWith: Driver.empty()))
+            .drive(onNext: { [weak self] in
+                guard let wself = self, let description = wself.contentsTextField.text else { return }
+                PostManager.shared.append(
+                    Post(choices: $0, userName: "田中", createdAt: Date(), description: description, deadline: wself.datePicker.date, voteCount: 0))
             })
             .disposed(by: disposeBag)
     }
@@ -87,7 +103,7 @@ class PostViewController: UIViewController {
 
 extension PostViewController {
     private func presentAddChoiceView() {
-        let viewController = AddChoiceViewController.make()
-        navigationController?.pushViewController(viewController, animated: true)
+        let viewController = AddChoiceViewController.make(choices: viewModel.choices)
+        present(viewController, animated: true)
     }
 }
