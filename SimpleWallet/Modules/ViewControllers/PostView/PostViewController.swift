@@ -45,12 +45,15 @@ class PostViewController: UIViewController {
         output
             .presentAddChoiceView
             .drive(onNext: { [weak self] in
-                
+                self?.presentAddChoiceView()
             })
             .disposed(by: disposeBag)
     }
 }
 
 extension PostViewController {
-    
+    private func presentAddChoiceView() {
+        let viewController = AddChoiceViewController.make()
+        navigationController?.pushViewController(viewController, animated: true)
+    }
 }
