@@ -37,6 +37,10 @@ class SendViewController: UIViewController {
         
         // 2. UTXOの取得
         let legacyAddress: String = AppController.shared.wallet!.publicKey.toLegacy().description
+        /**
+         * LockとmultisigをやるときにはUTXOの取得方法を変更する必要があります。
+         * これだと動かないので注意！
+         */
         APIClient().getUnspentOutputs(withAddresses: [legacyAddress], completionHandler: { [weak self] (unspentOutputs: [UnspentOutput]) in
             guard let strongSelf = self else {
                 return
@@ -121,35 +125,64 @@ class SendViewController: UIViewController {
         }
         
         // Signing
+//        let hashType = SighashType.BCH.ALL
+//        for (i, utxo) in unsignedTx.utxos.enumerated() {
+//            let pubkeyHash: Data = Script.getPublicKeyHash(from: utxo.output.lockingScript)
+//
+//            let keysOfUtxo: [PrivateKey] = keys.filter { $0.publicKey().pubkeyHash == pubkeyHash }
+//            guard let key = keysOfUtxo.first else {
+//                continue
+//            }
+//
+//            let sighash: Data = transactionToSign.signatureHash(for: utxo.output, inputIndex: i, hashType: SighashType.BCH.ALL)
+//            let signature: Data = try! Crypto.sign(sighash, privateKey: key)
+//            let txin = inputsToSign[i]
+//            let pubkey = key.publicKey()
+//
+//            // unlockScriptを作る
+//            let unlockingScript = Script.buildPublicKeyUnlockingScript(signature: signature, pubkey: pubkey, hashType: hashType)
+//            // edited
+//            let lockScript = Script(data: utxo.output.lockingScript)!
+//            let unlockScript = try! Script()
+//                .appendData(signature + UInt8(hashType))
+//                .appendData(pubkey.raw)
+//
+//            let context = ScriptExecutionContext(transaction: transactionToSign, utxoToVerify: utxo.output, inputIndex: UInt32(i))!
+//            context.verbose = true
+//            try! ScriptMachine.verify(lockScript: lockScript, unlockScript: unlockScript, context: context)
+//
+//            // TODO: sequenceの更新
+//            inputsToSign[i] = TransactionInput(previousOutput: txin.previousOutput, signatureScript: unlockingScript, sequence: txin.sequence)
+//        }
+        
         let hashType = SighashType.BCH.ALL
         for (i, utxo) in unsignedTx.utxos.enumerated() {
-            let pubkeyHash: Data = Script.getPublicKeyHash(from: utxo.output.lockingScript)
+            let walletA = try! Wallet(wif: "cP1uBo6EsiBayFLu3E5mst5eDg7KNGRJbndbckRfV14votPZu4oU")
+            let walletB = try! Wallet(wif: "cSxjgWLm5F4CY1YjEbTSYPPaeZWF9dsUx6S87sU6FfsMGj4aH3vH")
             
-            let keysOfUtxo: [PrivateKey] = keys.filter { $0.publicKey().pubkeyHash == pubkeyHash }
-            guard let key = keysOfUtxo.first else {
-                continue
-            }
+            let publicKeyA = AppController.shared.wallet!.publicKey
+            let publicKeyB = walletA.publicKey
+            let publicKeyC = walletB.publicKey
             
-            let sighash: Data = transactionToSign.signatureHash(for: utxo.output, inputIndex: i, hashType: SighashType.BCH.ALL)
-            let signature: Data = try! Crypto.sign(sighash, privateKey: key)
+            let redeemScript = Script(publicKeys: [publicKeyA, publicKeyB, publicKeyC], signaturesRequired: 2)!
+            
+            let output = TransactionOutput(value: utxo.output.value, lockingScript: redeemScript.data)
+            
+            let sighash: Data = transactionToSign.signatureHash(for: output, inputIndex: i, hashType: SighashType.BCH.ALL)
+            let signatureA: Data = try! Crypto.sign(sighash, privateKey: walletA.privateKey)
+            let signatureB: Data = try! Crypto.sign(sighash, privateKey: walletB.privateKey)
             let txin = inputsToSign[i]
-            let pubkey = key.publicKey()
             
-            // unlockScriptを作る
-            let unlockingScript = Script.buildPublicKeyUnlockingScript(signature: signature, pubkey: pubkey, hashType: hashType)
-            // edited
-            let lockScript = Script(data: utxo.output.lockingScript)!
-            let unlockScript = try! Script()
-                .appendData(signature + UInt8(hashType))
-                .appendData(pubkey.raw)
+            let unlockingScript = try! Script()
+                .append(.OP_0)
+                .appendData(signatureA + UInt8(hashType))
+                .appendData(signatureB + UInt8(hashType))
+                .appendData(redeemScript.data)
             
-            let context = ScriptExecutionContext(transaction: transactionToSign, utxoToVerify: utxo.output, inputIndex: UInt32(i))!
-            context.verbose = true
-            try! ScriptMachine.verify(lockScript: lockScript, unlockScript: unlockScript, context: context)
-            
-            // TODO: sequenceの更新
-            inputsToSign[i] = TransactionInput(previousOutput: txin.previousOutput, signatureScript: unlockingScript, sequence: txin.sequence)
+            inputsToSign[i] = TransactionInput(previousOutput: txin.previousOutput, signatureScript: unlockingScript.data, sequence: txin.sequence)
         }
+        
+        
         return transactionToSign
     }
     
@@ -159,7 +192,9 @@ class SendViewController: UIViewController {
         let publicKeyB = try! Wallet(wif: "cP1uBo6EsiBayFLu3E5mst5eDg7KNGRJbndbckRfV14votPZu4oU").publicKey
         let publicKeyC = try! Wallet(wif: "cSxjgWLm5F4CY1YjEbTSYPPaeZWF9dsUx6S87sU6FfsMGj4aH3vH").publicKey
         
-        return try! Cashaddr.init("sample") // これは消して下さい
+        let multisig = Script(publicKeys: [publicKeyA, publicKeyB, publicKeyC], signaturesRequired: 2)!
+        
+        return multisig.toP2SH().standardAddress(network: .testnet)!
     }
     
     private func string2ExpiryTime(dateString: String) -> Data {
