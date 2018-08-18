@@ -11,18 +11,22 @@ import RxSwift
 import RxCocoa
 
 class AddChoiceViewController: UIViewController {
-    static func make() -> UIViewController {
+    static func make(choices: BehaviorRelay<[Post.Choice]>) -> UIViewController {
         let viewController = R.storyboard.addChoiceViewController.instantiateInitialViewController()!
+        viewController.title = "選択肢の作成"
+        viewController.choices = choices
         return viewController
     }
     
     private let disposeBag = DisposeBag()
     private let viewModel = AddChoiceViewModel()
+    private var choices: BehaviorRelay<[Post.Choice]>!
     
     @IBOutlet private weak var choiceTextField: UITextField!
     @IBOutlet private weak var numberLabel: UILabel!
     @IBOutlet private weak var BCHurlText: UITextField!
     @IBOutlet private weak var addButton: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         bindViewModel()
@@ -30,8 +34,6 @@ class AddChoiceViewController: UIViewController {
     
     private func bindViewModel() {
         let input = AddChoiceViewModel.Input(
-            choiceTextFieldInput: choiceTextField.rx.text.orEmpty.asDriver(),
-            BCHurlTextInput: BCHurlText.rx.text.orEmpty.asDriver(),
             addButton: addButton.rx.tap.asDriver()
         )
         
@@ -39,8 +41,12 @@ class AddChoiceViewController: UIViewController {
         
         output
             .registerChoice
-            .drive(onNext: { [weak self] in
-                self?.dismiss(animated: true)
+            .drive(onNext: { [weak self] _ in
+                guard let wself = self, let description = wself.choiceTextField.text, let address = wself.BCHurlText.text else { return }
+                var arr = wself.choices.value
+                arr.append(Post.Choice(description: description, address: address))
+                wself.choices.accept(arr)
+                wself.dismiss(animated: true)
             })
             .disposed(by: disposeBag)
     }

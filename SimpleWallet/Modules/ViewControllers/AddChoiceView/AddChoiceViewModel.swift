@@ -11,8 +11,6 @@ import RxCocoa
 
 final class AddChoiceViewModel {
     struct Input {
-        let choiceTextFieldInput: Driver<String>
-        let BCHurlTextInput: Driver<String>
         let addButton: Driver<Void>
     }
     
