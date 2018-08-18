@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 
 final class PostViewModel {
+    let choices = BehaviorRelay(value: [Post.Choice]())
 
     struct Input {
         let contentsTextFieldInput: Driver<String>
@@ -17,7 +18,7 @@ final class PostViewModel {
         let addChoiceButtonDidTap: Driver<Void>
         let postButtonDidTap: Driver<Void>
     }
-    
+
     struct Output {
         let presentAddChoiceView: Driver<Void>
     }
