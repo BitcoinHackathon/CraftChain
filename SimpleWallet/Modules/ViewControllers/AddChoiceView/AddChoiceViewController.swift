@@ -26,10 +26,11 @@ class AddChoiceViewController: UIViewController {
     @IBOutlet private weak var numberLabel: UILabel!
     @IBOutlet private weak var BCHurlText: UITextField!
     @IBOutlet private weak var addButton: UIButton!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         bindViewModel()
+        configureUI()
     }
     
     private func bindViewModel() {
@@ -49,5 +50,9 @@ class AddChoiceViewController: UIViewController {
                 wself.dismiss(animated: true)
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func configureUI() {
+        numberLabel.text = String(choices.value.count + 1)
     }
 }
