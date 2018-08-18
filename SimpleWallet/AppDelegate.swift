@@ -24,7 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let viewControllers = [UINavigationController(rootViewController: TopTableViewController.make()),
                                WalletViewController.make(),
                                CommentListTableViewController.make(),
-                               HomeViewController.make()]
+                               HomeViewController.make(),
+                               PostViewController.make()]
         viewControllers.forEach {
             tabBarController.addChildViewController($0)
         }

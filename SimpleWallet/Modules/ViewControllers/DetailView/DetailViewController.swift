@@ -14,12 +14,15 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var commentText: UITextField!
+    
     @IBOutlet weak var choice1Button: UIButton!
     @IBOutlet weak var choice2Button: UIButton!
     @IBOutlet weak var choice3Button: UIButton!
     @IBOutlet weak var choice4Button: UIButton!
     @IBOutlet weak var voteCountLabel: UILabel!
     @IBOutlet weak var remainDateLabel: UILabel!
+    
+    var lockTimeString: String!
 
     private var post: Post!
     private var updateTimer: Timer!
@@ -33,31 +36,13 @@ class DetailViewController: UIViewController {
     @IBAction func voteAction(_ sender: Any) {
         print("投票しました")
         
-        // LOCKTIME付きで運営に送金
-        // OP_1など、投票先によって識別子をつける（UTXO回収時にどの投票だったのかを判別するため）
-        
-        
-        // OP_RETURNもつける
-        // メッセージも送信する
-        
-        
-        
-        
-        // 受け取った運営の使い方
-        // UTXO集める→識別子を見て適切なものだけを送金
-        
-        
-        
-        // OP_RETURNを見れる場所
-        // 送金された後にメッセージを見れるようにする
-        // 送金されたトランザクションをなめて、メッセージ入りのOUTPUTを配列で全部表示する
-        
-        
-        
-        
+        // TODO: targetPubKey をちゃんとハメる
+        // 運営と投票される側でマルチシグを行う
+        let multisig: Address = BCHHelper().createMultisigAddress(adminPubKey: Constant.adminPubKey, targetPubKey: Constant.adminPubKey)
+        sendCoins(toAddress: multisig, amount: Constant.voteAmount, comment: commentText.text!)
     }
     
-    private func sendCoins(toAddress: Address, amount: Int64) {
+    private func sendCoins(toAddress: Address, amount: Int64, comment: String) {
         // 1. おつり用のアドレスを決める
         let changeAddress: Address = AppController.shared.wallet!.publicKey.toCashaddr()
         
@@ -68,7 +53,7 @@ class DetailViewController: UIViewController {
                 return
             }
             let utxos = unspentOutputs.map { $0.asUnspentTransaction() }
-            let unsignedTx = strongSelf.createUnsignedTx(toAddress: toAddress, amount: amount, changeAddress: changeAddress, utxos: utxos)
+            let unsignedTx = strongSelf.createUnsignedTx(toAddress: toAddress, amount: amount, changeAddress: changeAddress, utxos: utxos, comment: comment)
             let signedTx = strongSelf.signTx(unsignedTx: unsignedTx, keys: [AppController.shared.wallet!.privateKey])
             let rawTx = signedTx.serialized().hex
             
@@ -84,18 +69,35 @@ class DetailViewController: UIViewController {
         })
     }
     
-    public func selectTx(from utxos: [UnspentTransaction], amount: Int64) -> (utxos: [UnspentTransaction], fee: Int64) {
-        return (utxos, 500)
-    }
-    
-    public func createUnsignedTx(toAddress: Address, amount: Int64, changeAddress: Address, utxos: [UnspentTransaction]) -> UnsignedTransaction {
+    public func createUnsignedTx(toAddress: Address, amount: Int64, changeAddress: Address, utxos: [UnspentTransaction], comment: String) -> UnsignedTransaction {
         // 3. 送金に必要なUTXOの選択
-        let (utxos, fee) = selectTx(from: utxos, amount: amount)
+        let (utxos, fee) = BCHHelper().selectTx(from: utxos, amount: amount)
         let totalAmount: Int64 = utxos.reduce(0) { $0 + $1.output.value }
         let change: Int64 = totalAmount - amount - fee
         
-        let lockScriptTo = Script(address: toAddress)!
         let lockScriptChange = Script(address: changeAddress)!
+        
+        let lockScriptTo = try! Script()
+            // 運営がunlockする場合
+            .append(.OP_IF)
+                // マルチシグでロック
+                .append(.OP_2)
+                // TODO: 値の入れ替え
+                .appendData(Constant.adminPubKey.raw)
+                .appendData(try! Wallet(wif: "立候補者").publicKey.raw)
+                .append(.OP_2)
+                .append(.OP_CHECKMULTISIG)
+            // ユーザーがunlockする場合
+            .append(.OP_ELSE)
+                // LOCKTIMEをかける
+                .appendData(BCHHelper().string2ExpiryTime(dateString: lockTimeString))
+                .append(.OP_CHECKLOCKTIMEVERIFY)
+                .append(.OP_DROP)
+                .append(.OP_HASH160)
+                // LOCKTIMEが過ぎていたら自分で開けられる
+                .appendData(AppController.shared.wallet!.publicKey.toCashaddr().data)
+                .append(.OP_EQUALVERIFY)
+                .append(.OP_CHECKSIG)
         
         let toOutput = TransactionOutput(value: amount, lockingScript: lockScriptTo.data)
         let changeOutput = TransactionOutput(value: change, lockingScript: lockScriptChange.data)
@@ -142,16 +144,7 @@ class DetailViewController: UIViewController {
         
         return transactionToSign
     }
-    
-    private func createMultisigAddress() -> Address {
-        let publicKeyA = AppController.shared.wallet!.publicKey
-        let publickeyB = try! Wallet(wif: "").publicKey
-        
-        let multisig = Script(publicKeys: [publicKeyA, publickeyB], signaturesRequired: 2)!
-        
-        return multisig.toP2SH().standardAddress(network: .testnet)!
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setup(post: post)
@@ -159,6 +152,12 @@ class DetailViewController: UIViewController {
             guard let me = self else { return }
             me.setup(post: me.post)
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        lockTimeString = "2018-08-20 18:00:00"
     }
 
     func setup(post: Post) {
