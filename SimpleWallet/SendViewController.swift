@@ -14,12 +14,21 @@ class SendViewController: UIViewController {
     @IBAction func
         sendButtonTapped(_ sender: Any) {
         // 送金をする
-        
+        let address: Address = try! AddressFactory.create("bchtest:qqyx54s77m5r5nsm6sz6drrludxqky2ja5eszn7uny")
+//        let address: Address = try! AddressFactory.create("bchtest:qrqsulhree6hhgg47hncvx0ha3tj54qcxue0gar3zl")
+        sendCoins(toAddress: address, amount: 1000)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let script = try! Script()
+            .append(.OP_5)
+            .append(.OP_5)
+            .append(.OP_EQUAL)
+        let context = ScriptExecutionContext()
+        context.verbose = true
+        try! script.execute(with: context)
     }
     
     private func sendCoins(toAddress: Address, amount: Int64) {
@@ -61,21 +70,46 @@ class SendViewController: UIViewController {
         
         
         // 4. LockScriptを書いて、TransactionOutputを作成する
-        let lockScriptTo = Script(address: toAddress)!
+//        let lockScriptTo = Script(address: toAddress)!
         let lockScriptChange = Script(address: changeAddress)!
-        
+
         // 上のBitcoin Scriptを自分で書いてみよー！
+        // scriptPubKey: OP_DUP OP_HASH160 <pubKeyHash> OP_EQUALVERIFY OP_CHECKSIG
+        // 自作するとこうなる
+//        let lockScriptTo = try! Script()
+//            .append(.OP_DUP)
+//            .append(.OP_HASH160)
+//            .appendData(toAddress.data)
+//            .append(.OP_EQUALVERIFY)
+//            .append(.OP_CHECKSIG)
         
         // OP_RETURNのOutputを作成する
+        let opReturnScript = try! Script()
+            .append(.OP_RETURN)
+            .appendData("Hello Bitcoin!".data(using: .utf8)!)
+        let opReturnOutput = TransactionOutput(value: 0, lockingScript: opReturnScript.data)
         
-        // OP_CLTVのOutputを作成する    
+        // OP_CLTVのOutputを作成する
+        let opCLTVScript = try! Script()
+            .appendData(string2ExpiryTime(dateString: "2018-08-18 23:00:00"))
+            .append(.OP_CHECKLOCKTIMEVERIFY)
+            .append(.OP_DROP)
+            .append(.OP_DUP)
+            .append(.OP_HASH160)
+            .appendData(toAddress.data)
+            .append(.OP_EQUALVERIFY)
+            .append(.OP_CHECKSIG)
+        let opCLTVOutput = TransactionOutput(value: 300, lockingScript: opCLTVScript.data)
         
-        let toOutput = TransactionOutput(value: amount, lockingScript: lockScriptTo.data)
+//        let toOutput = TransactionOutput(value: amount, lockingScript: lockScriptTo.data)
         let changeOutput = TransactionOutput(value: change, lockingScript: lockScriptChange.data)
         
         // 5. UTXOとTransactionOutputを合わせて、UnsignedTransactionを作る
         let unsignedInputs = utxos.map { TransactionInput(previousOutput: $0.outpoint, signatureScript: Data(), sequence: UInt32.max) }
-        let tx = Transaction(version: 1, inputs: unsignedInputs, outputs: [toOutput, changeOutput], lockTime: 0)
+//        let tx = Transaction(version: 1, inputs: unsignedInputs, outputs: [toOutput, changeOutput], lockTime: 0)
+//        let tx = Transaction(version: 1, inputs: unsignedInputs, outputs: [opReturnOutput, changeOutput], lockTime: 0)
+        let tx = Transaction(version: 1, inputs: unsignedInputs, outputs: [opCLTVOutput, changeOutput], lockTime: 0)
+
         return UnsignedTransaction(tx: tx, utxos: utxos)
     }
     
@@ -103,6 +137,15 @@ class SendViewController: UIViewController {
             
             // unlockScriptを作る
             let unlockingScript = Script.buildPublicKeyUnlockingScript(signature: signature, pubkey: pubkey, hashType: hashType)
+            // edited
+            let lockScript = Script(data: utxo.output.lockingScript)!
+            let unlockScript = try! Script()
+                .appendData(signature + UInt8(hashType))
+                .appendData(pubkey.raw)
+            
+            let context = ScriptExecutionContext(transaction: transactionToSign, utxoToVerify: utxo.output, inputIndex: UInt32(i))!
+            context.verbose = true
+            try! ScriptMachine.verify(lockScript: lockScript, unlockScript: unlockScript, context: context)
             
             // TODO: sequenceの更新
             inputsToSign[i] = TransactionInput(previousOutput: txin.previousOutput, signatureScript: unlockingScript, sequence: txin.sequence)
