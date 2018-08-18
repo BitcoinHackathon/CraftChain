@@ -11,8 +11,10 @@ import RxSwift
 import RxCocoa
 
 class PostViewController: UIViewController {
+
     static func make() -> UIViewController {
         let viewController = R.storyboard.postViewController().instantiateInitialViewController()!
+        viewController.title = "投票の作成"
         return viewController
     }
     
@@ -20,6 +22,10 @@ class PostViewController: UIViewController {
     @IBOutlet private weak var datePicker: UIDatePicker!
     @IBOutlet private weak var addChoice: UIButton!
     @IBOutlet private weak var postButton: UIButton!
+    @IBOutlet private weak var choiceLabel1: UILabel!
+    @IBOutlet private weak var choiceLabel2: UILabel!
+    @IBOutlet private weak var choiceLabel3: UILabel!
+    @IBOutlet private weak var choiceLabel4: UILabel!
     
     private let disposeBag = DisposeBag()
     private let viewModel = PostViewModel()
@@ -29,8 +35,36 @@ class PostViewController: UIViewController {
         configure()
         bindViewModel()
     }
+
     private func configure() {
-        title = "投票の作成"
+        //TODO:TextFieldのdelegate処理を行う
+        hiddenLabel()
+    }
+
+    private func hiddenLabel() {
+        choiceLabel1.isHidden = true
+        choiceLabel2.isHidden = true
+        choiceLabel3.isHidden = true
+        choiceLabel4.isHidden = true
+        let value = viewModel.choices.value
+    
+        switch value.count {
+        case 0: return
+        case 1:
+            choiceLabel1.isHidden = false
+            choiceLabel1.text = value[0].description
+        case 2:
+            choiceLabel2.isHidden = false
+            choiceLabel2.text = value[1].description
+        case 3:
+            choiceLabel3.isHidden = false
+            choiceLabel3.text = value[2].description
+        case 4:
+            choiceLabel4.isHidden = false
+            choiceLabel4.text = value[3].description
+        default:
+            break
+        }
     }
     
     private func bindViewModel() {

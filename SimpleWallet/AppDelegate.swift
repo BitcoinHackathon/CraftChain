@@ -22,7 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         let tabBarController = UITabBarController()
         let viewControllers = [WalletViewController.make(),
-                               HomeViewController.make()]
+                               HomeViewController.make(),
+                               PostViewController.make()]
         viewControllers.forEach {
             tabBarController.addChildViewController($0)
         }
