@@ -34,11 +34,11 @@ class DetailViewController: UIViewController {
     }
 
     @IBAction func voteAction(_ sender: Any) {
-        print("投票しました")
-        
-        // TODO: targetPubKey をちゃんとハメる
+        debugLog("投票しました")
+
         // 運営と投票される側でマルチシグを行う
-        let multisig: Address = BCHHelper().createMultisigAddress(adminPubKey: Constant.adminPubKey, targetPubKey: Constant.adminPubKey)
+        let multisig: Address = BCHHelper().createMultisigAddress(adminPubKey: Constant.adminPubKey,
+                                                                  targetPubKey: post.choices[0].pubKey) //決め打ち
         sendCoins(toAddress: multisig, amount: Constant.voteAmount, comment: commentText.text!)
     }
     
@@ -82,9 +82,8 @@ class DetailViewController: UIViewController {
             .append(.OP_IF)
                 // マルチシグでロック
                 .append(.OP_2)
-                // TODO: 値の入れ替え
                 .appendData(Constant.adminPubKey.raw)
-                .appendData(try! Wallet(wif: "立候補者").publicKey.raw)
+                .appendData(post.choices[0].pubKey.raw) //決め打ち
                 .append(.OP_2)
                 .append(.OP_CHECKMULTISIG)
             // ユーザーがunlockする場合
@@ -114,34 +113,29 @@ class DetailViewController: UIViewController {
         var transactionToSign: Transaction {
             return Transaction(version: unsignedTx.tx.version, inputs: inputsToSign, outputs: unsignedTx.tx.outputs, lockTime: unsignedTx.tx.lockTime)
         }
-        
+
         // Signing
         let hashType = SighashType.BCH.ALL
         for (i, utxo) in unsignedTx.utxos.enumerated() {
-            // TODO: 運営の
-            let walletA = try! Wallet(wif: "")
-            
-            let publicKeyA = AppController.shared.wallet!.publicKey
-            let publicKeyB = walletA.publicKey
-            
-            let redeemScript = Script(publicKeys: [publicKeyA, publicKeyB], signaturesRequired: 2)!
-            
-            // outputを作り直す
-            let output = TransactionOutput(value: utxo.output.value, lockingScript: redeemScript.data)
-            
-            // 作り直したoutputをsighashを作るときに入れる
-            let sighash: Data = transactionToSign.signatureHash(for: output, inputIndex: i, hashType: SighashType.BCH.ALL)
-            let signatureA: Data = try! Crypto.sign(sighash, privateKey: walletA.privateKey)
+            let pubkeyHash: Data = Script.getPublicKeyHash(from: utxo.output.lockingScript)
+
+            let keysOfUtxo: [PrivateKey] = keys.filter { $0.publicKey().pubkeyHash == pubkeyHash }
+            guard let key = keysOfUtxo.first else {
+                continue
+            }
+
+            let sighash: Data = transactionToSign.signatureHash(for: utxo.output, inputIndex: i, hashType: SighashType.BCH.ALL)
+            let signature: Data = try! Crypto.sign(sighash, privateKey: key)
             let txin = inputsToSign[i]
-            
-            let unlockingScript = try! Script()
-                .append(.OP_0)
-                .appendData(signatureA + UInt8(hashType))
-                .appendData(redeemScript.data)
-            
-            inputsToSign[i] = TransactionInput(previousOutput: txin.previousOutput, signatureScript: unlockingScript.data, sequence: txin.sequence)
+            let pubkey = key.publicKey()
+
+            // unlockScriptを作る
+            let unlockingScript = Script.buildPublicKeyUnlockingScript(signature: signature, pubkey: pubkey, hashType: hashType)
+
+            inputsToSign[i] = TransactionInput(previousOutput: txin.previousOutput,
+                                               signatureScript: unlockingScript,
+                                               sequence: txin.sequence)
         }
-        
         return transactionToSign
     }
 

@@ -7,11 +7,13 @@
 //
 
 import Foundation
+import BitcoinKit
 
 struct Post {
     struct Choice {
         let description: String
         let address: String
+        let pubKey: PublicKey
     }
     let choices: [Choice]
     let userName: String
