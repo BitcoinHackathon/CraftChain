@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09B7BF5121284D9B00D1232D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B7BF5021284D9B00D1232D /* DetailViewController.swift */; };
+		09B7BF5321284DA600D1232D /* DetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09B7BF5221284DA600D1232D /* DetailViewController.storyboard */; };
 		0C26AB7B2126C59E00170732 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C26AB7A2126C59E00170732 /* AppDelegate.swift */; };
 		0C26AB822126C59F00170732 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C26AB812126C59F00170732 /* Assets.xcassets */; };
 		0C26AB852126C59F00170732 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C26AB832126C59F00170732 /* LaunchScreen.storyboard */; };
@@ -29,6 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		09B7BF5021284D9B00D1232D /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		09B7BF5221284DA600D1232D /* DetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailViewController.storyboard; sourceTree = "<group>"; };
 		0C26AB772126C59E00170732 /* SimpleWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C26AB7A2126C59E00170732 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0C26AB812126C59F00170732 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -66,6 +70,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		09B7BF4F21284D7E00D1232D /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+				09B7BF5021284D9B00D1232D /* DetailViewController.swift */,
+				09B7BF5221284DA600D1232D /* DetailViewController.storyboard */,
+			);
+			path = DetailView;
+			sourceTree = "<group>";
+		};
 		0C26AB6E2126C59E00170732 = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +125,7 @@
 		6E5E3C6F21282E54005042F2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				09B7BF4F21284D7E00D1232D /* DetailView */,
 				A04EA50B2128347A00709549 /* PostView */,
 				6E5E3C7021282E5E005042F2 /* Sample */,
 			);
@@ -254,6 +268,7 @@
 			files = (
 				0C26AB9B2126C5BB00170732 /* Main.storyboard in Resources */,
 				A04EA510212834A500709549 /* PostViewController.storyboard in Resources */,
+				09B7BF5321284DA600D1232D /* DetailViewController.storyboard in Resources */,
 				0C26AB852126C59F00170732 /* LaunchScreen.storyboard in Resources */,
 				0C26AB822126C59F00170732 /* Assets.xcassets in Resources */,
 			);
@@ -340,6 +355,7 @@
 				0C26AB9D2126C5BB00170732 /* AppController.swift in Sources */,
 				A04EA5082128320000709549 /* QRCoder.swift in Sources */,
 				A04EA5032128318D00709549 /* R.generated.swift in Sources */,
+				09B7BF5121284D9B00D1232D /* DetailViewController.swift in Sources */,
 				0C26AB9A2126C5BB00170732 /* HomeViewController.swift in Sources */,
 				0C26AB952126C5BB00170732 /* Extension.swift in Sources */,
 			);

@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         window?.makeKeyAndVisible()
         let tabBarController = UITabBarController()
-        let viewControllers = [PostViewController.make()]
+        let viewControllers = [DetailViewController.make(), PostViewController.make()]
         viewControllers.forEach {
             tabBarController.addChildViewController($0)
         }
