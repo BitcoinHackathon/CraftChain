@@ -21,7 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         window?.makeKeyAndVisible()
         let tabBarController = UITabBarController()
-        let viewControllers = [WalletViewController.make(),
+        let viewControllers = [TopTableViewController.make(),
+                               WalletViewController.make(),
                                HomeViewController.make()]
         viewControllers.forEach {
             tabBarController.addChildViewController($0)
@@ -32,6 +33,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func setup() {
+        let post = Post(choices: [Post.Choice(description: "選択肢1", address: "addr1"),
+                                  Post.Choice(description: "選択肢2", address: "addr2"),
+                                  Post.Choice(description: "選択肢3", address: "addr3")],
+                        userName: "ゆーざ名",
+                        createdAt: Date(),
+                        description: "ですくり",
+                        deadline: Date().addingTimeInterval(2000),
+                        voteCount: 0)
+        PostManager.shared.append(post)
+
         if AppController.shared.wallet == nil {
             debugLog("Create wallet")
             let privateKey = PrivateKey(network: .testnet)
