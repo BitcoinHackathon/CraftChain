@@ -29,6 +29,9 @@
 		A04EA50E2128349800709549 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04EA50D2128349800709549 /* PostViewController.swift */; };
 		A04EA510212834A500709549 /* PostViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A04EA50F212834A500709549 /* PostViewController.storyboard */; };
 		A04EA512212834B400709549 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04EA511212834B400709549 /* PostViewModel.swift */; };
+		A04EA51521284A5C00709549 /* AddChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04EA51421284A5C00709549 /* AddChoiceViewController.swift */; };
+		A04EA51721284A6F00709549 /* AddChoiceViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A04EA51621284A6F00709549 /* AddChoiceViewController.storyboard */; };
+		A04EA51A21284FAA00709549 /* AddChoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04EA51921284FAA00709549 /* AddChoiceViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +60,9 @@
 		A04EA50D2128349800709549 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		A04EA50F212834A500709549 /* PostViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PostViewController.storyboard; sourceTree = "<group>"; };
 		A04EA511212834B400709549 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
+		A04EA51421284A5C00709549 /* AddChoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChoiceViewController.swift; sourceTree = "<group>"; };
+		A04EA51621284A6F00709549 /* AddChoiceViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddChoiceViewController.storyboard; sourceTree = "<group>"; };
+		A04EA51921284FAA00709549 /* AddChoiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChoiceViewModel.swift; sourceTree = "<group>"; };
 		E5ECAEB1857BAAF4B13C99D0 /* Pods-SimpleWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleWallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleWallet/Pods-SimpleWallet.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,7 +124,10 @@
 		6E5E3C6F21282E54005042F2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				A04EA51321284A2600709549 /* AddChoiceView */,
+
 				6E5E3C8221284F97005042F2 /* Wallet */,
+
 				A04EA50B2128347A00709549 /* PostView */,
 				6E5E3C7021282E5E005042F2 /* Sample */,
 			);
@@ -189,6 +198,16 @@
 				A04EA511212834B400709549 /* PostViewModel.swift */,
 			);
 			path = PostView;
+			sourceTree = "<group>";
+		};
+		A04EA51321284A2600709549 /* AddChoiceView */ = {
+			isa = PBXGroup;
+			children = (
+				A04EA51421284A5C00709549 /* AddChoiceViewController.swift */,
+				A04EA51621284A6F00709549 /* AddChoiceViewController.storyboard */,
+				A04EA51921284FAA00709549 /* AddChoiceViewModel.swift */,
+			);
+			path = AddChoiceView;
 			sourceTree = "<group>";
 		};
 		B9FA8277D003BE58DC53CDBC /* Pods */ = {
@@ -270,6 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C26AB9B2126C5BB00170732 /* Main.storyboard in Resources */,
+				A04EA51721284A6F00709549 /* AddChoiceViewController.storyboard in Resources */,
 				A04EA510212834A500709549 /* PostViewController.storyboard in Resources */,
 				0C26AB852126C59F00170732 /* LaunchScreen.storyboard in Resources */,
 				0C26AB822126C59F00170732 /* Assets.xcassets in Resources */,
@@ -349,6 +369,7 @@
 				0C26AB972126C5BB00170732 /* SendViewController.swift in Sources */,
 				0C26AB962126C5BB00170732 /* UnspentOutput.swift in Sources */,
 				A04EA506212831E200709549 /* UIViewController+Ex.swift in Sources */,
+				A04EA51A21284FAA00709549 /* AddChoiceViewModel.swift in Sources */,
 				A04EA50E2128349800709549 /* PostViewController.swift in Sources */,
 				0C26AB9C2126C5BB00170732 /* Transaction.swift in Sources */,
 				6E5E3C7421282EFE005042F2 /* APIClient.swift in Sources */,
@@ -360,6 +381,7 @@
 				6E61F5A02128595B007C696D /* Post.swift in Sources */,
 				A04EA5032128318D00709549 /* R.generated.swift in Sources */,
 				0C26AB9A2126C5BB00170732 /* HomeViewController.swift in Sources */,
+				A04EA51521284A5C00709549 /* AddChoiceViewController.swift in Sources */,
 				0C26AB952126C5BB00170732 /* Extension.swift in Sources */,
 				6E5E3C8021284F87005042F2 /* WalletViewController.swift in Sources */,
 			);
