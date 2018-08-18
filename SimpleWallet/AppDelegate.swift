@@ -7,25 +7,50 @@
 //
 
 import UIKit
+import BitcoinKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+
+        setup()
 
         window = UIWindow()
         window?.makeKeyAndVisible()
         let tabBarController = UITabBarController()
-        let viewControllers = [DetailViewController.make(), PostViewController.make()]
+        let viewControllers = [TopTableViewController.make(),
+                               WalletViewController.make(),
+                               HomeViewController.make()]
         viewControllers.forEach {
             tabBarController.addChildViewController($0)
         }
         window?.rootViewController = tabBarController
 
         return true
+    }
+
+    private func setup() {
+        let post = Post(choices: [Post.Choice(description: "選択肢1", address: "addr1"),
+                                  Post.Choice(description: "選択肢2", address: "addr2"),
+                                  Post.Choice(description: "選択肢3", address: "addr3")],
+                        userName: "ゆーざ名",
+                        createdAt: Date(),
+                        description: "ですくり",
+                        deadline: Date().addingTimeInterval(2000),
+                        voteCount: 0)
+        PostManager.shared.append(post)
+
+        if AppController.shared.wallet == nil {
+            debugLog("Create wallet")
+            let privateKey = PrivateKey(network: .testnet)
+            let wif = privateKey.toWIF()
+            AppController.shared.importWallet(wif: wif)
+        } else {
+            debugLog("Exists wallet")
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
