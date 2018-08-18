@@ -7,25 +7,39 @@
 //
 
 import UIKit
+import BitcoinKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+
+        setup()
 
         window = UIWindow()
         window?.makeKeyAndVisible()
         let tabBarController = UITabBarController()
-        let viewControllers = [PostViewController.make()]
+        let viewControllers = [WalletViewController.make(),
+                               HomeViewController.make()]
         viewControllers.forEach {
             tabBarController.addChildViewController($0)
         }
         window?.rootViewController = tabBarController
 
         return true
+    }
+
+    private func setup() {
+        if AppController.shared.wallet == nil {
+            debugLog("Create wallet")
+            let privateKey = PrivateKey(network: .testnet)
+            let wif = privateKey.toWIF()
+            AppController.shared.importWallet(wif: wif)
+        } else {
+            debugLog("Exists wallet")
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
