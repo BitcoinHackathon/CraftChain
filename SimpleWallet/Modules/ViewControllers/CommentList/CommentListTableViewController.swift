@@ -16,10 +16,10 @@ class CommentListTableViewController: UITableViewController {
         return vc
     }
 
-    let txs: [String] = ["05deb3f0ea74c3a81f9b4784ebfe3020d825631782a18955eaeadc16ed1effc1",
-                         "dfd6c7702ae52f3b881b89776a69337cfa0d004f672742172beb96b36ab82244",
-                         "2d0e8b2ee2958b6af31c2869d9ffd2adc97400486a9c4b9dc538488e86c69da5"]
-    var results: [String] = []
+    let txs: [String] = ["3cddeffbc70b164e4aae075c9c2fb6123185ad03d76e83782524d275f82c3c07",
+                         "c59360e651cf4fc383eba9c407e0f5dbf5c0ca6b92db4f25874b1410f9049fc9",
+                         "3f80c136c0744282ab82d1d282abe42747730462c65e0d07ac44c1823db6cc40"]
+    var results: [Vote] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +37,15 @@ class CommentListTableViewController: UITableViewController {
                 guard let me = self else { return }
                 debugLog("Got tx detail", $0)
                 let message = $0.outputs
-                    .map { $0.scriptPubKey.hex }
-                    .compactMap { Data(hex: $0) }
-                    .compactMap { String.init(data: $0, encoding: .utf8) }
+                    .map { (o: Output) -> String in
+                        let hex = o.scriptPubKey.hex
+                        return String(hex.suffix(hex.count-4)) // 先頭４文字を削る
+                    }
+                    .compactMap {
+                        guard let data = Data(hex: $0) else { return nil }
+                        return data
+                    }
+                    .compactMap { (data: Data) in Vote(from: data) }
                 me.results += message
                 DispatchQueue.main.async {
                     me.tableView.reloadData()
@@ -55,7 +61,7 @@ class CommentListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let result = results[indexPath.row]
-        cell.textLabel?.text =  result
+        cell.textLabel?.text =  result.message
         return cell
     }
 }
