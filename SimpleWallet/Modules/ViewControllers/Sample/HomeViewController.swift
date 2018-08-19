@@ -12,6 +12,7 @@ import BitcoinKit
 class HomeViewController: UITableViewController {
     static func make() -> UIViewController {
         let vc = R.storyboard.main.instantiateInitialViewController()!
+        vc.tabBarItem = UITabBarItem(title: nil, image: R.image.analyze()!, selectedImage: nil)
         vc.title = "Example"
         return vc
     }
