@@ -37,12 +37,13 @@ class DetailViewController: UIViewController {
         debugLog("投票しました")
 
         // 運営と投票される側でマルチシグを行う
+        // 今回、投票される側の公開鍵は決め打ち
         let multisig: Address = BCHHelper().createMultisigAddress(adminPubKey: Constant.adminPubKey,
-                                                                  targetPubKey: post.choices[0].pubKey) //決め打ち
-        sendCoins(toAddress: multisig, amount: Constant.voteAmount)
+                                                                  targetPubKey: post.choices[0].pubKey)
+        sendCoins(toAddress: multisig, amount: Constant.voteAmount, comment: commentText.text!)
     }
     
-    private func sendCoins(toAddress: Address, amount: Int64) {
+    private func sendCoins(toAddress: Address, amount: Int64, comment: String) {
         // おつり用のアドレスを決める
         let changeAddress: Address = AppController.shared.wallet!.publicKey.toCashaddr()
         
@@ -53,7 +54,7 @@ class DetailViewController: UIViewController {
                 return
             }
             let utxos = unspentOutputs.map { $0.asUnspentTransaction() }
-            let unsignedTx = strongSelf.createUnsignedTx(toAddress: toAddress, amount: amount, changeAddress: changeAddress, utxos: utxos)
+            let unsignedTx = strongSelf.createUnsignedTx(toAddress: toAddress, amount: amount, changeAddress: changeAddress, utxos: utxos, comment: comment)
             let signedTx = strongSelf.signTx(unsignedTx: unsignedTx, keys: [AppController.shared.wallet!.privateKey])
             let rawTx = signedTx.serialized().hex
             
@@ -69,7 +70,7 @@ class DetailViewController: UIViewController {
         })
     }
     
-    public func createUnsignedTx(toAddress: Address, amount: Int64, changeAddress: Address, utxos: [UnspentTransaction]) -> UnsignedTransaction {
+    public func createUnsignedTx(toAddress: Address, amount: Int64, changeAddress: Address, utxos: [UnspentTransaction], comment: String) -> UnsignedTransaction {
         // UTXOの選択
         let (utxos, fee) = BCHHelper().selectTx(from: utxos)
         let totalAmount: Int64 = utxos.reduce(0) { $0 + $1.output.value }
@@ -99,11 +100,11 @@ class DetailViewController: UIViewController {
                 .append(.OP_CHECKSIG)
         
         // TODO: hash値検討
-        let opReturnJson = Vote(hash: "hoge", message: commentText.text!)
+        let opReturnJson: String = Vote(hash: "hoge", message: comment).toJson()
         
         let opReturnScript = try! Script()
             .append(.OP_RETURN)
-            .appendData(opReturnJson.toJson().data(using: .utf8)!)
+            .appendData(opReturnJson.data(using: .utf8)!)
         
         let toOutput = TransactionOutput(value: amount, lockingScript: lockScriptTo.data)
         let changeOutput = TransactionOutput(value: change, lockingScript: lockScriptChange.data)
