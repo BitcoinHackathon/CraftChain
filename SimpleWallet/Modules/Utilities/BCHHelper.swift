@@ -15,7 +15,7 @@ struct BCHHelper {
         return multisig.toP2SH().standardAddress(network: .testnet)!
     }
     
-    func selectTx(from utxos: [UnspentTransaction], amount: Int64) -> (utxos: [UnspentTransaction], fee: Int64) {
+    func selectTx(from utxos: [UnspentTransaction]) -> (utxos: [UnspentTransaction], fee: Int64) {
         return (utxos, 500)
     }
     

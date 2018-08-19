@@ -43,10 +43,10 @@ class DetailViewController: UIViewController {
     }
     
     private func sendCoins(toAddress: Address, amount: Int64, comment: String) {
-        // 1. おつり用のアドレスを決める
+        // おつり用のアドレスを決める
         let changeAddress: Address = AppController.shared.wallet!.publicKey.toCashaddr()
         
-        // 2. UTXOの取得
+        // UTXOの取得
         let legacyAddress: String = AppController.shared.wallet!.publicKey.toLegacy().description
         APIClient().getUnspentOutputs(withAddresses: [legacyAddress], completionHandler: { [weak self] (unspentOutputs: [UnspentOutput]) in
             guard let strongSelf = self else {
@@ -57,7 +57,7 @@ class DetailViewController: UIViewController {
             let signedTx = strongSelf.signTx(unsignedTx: unsignedTx, keys: [AppController.shared.wallet!.privateKey])
             let rawTx = signedTx.serialized().hex
             
-            // 7. 署名されたtxをbroadcastする
+            // broadcast
             APIClient().postTx(withRawTx: rawTx, completionHandler: { (txid, error) in
                 if let txid = txid {
                     print("txid = \(txid)")
@@ -70,8 +70,8 @@ class DetailViewController: UIViewController {
     }
     
     public func createUnsignedTx(toAddress: Address, amount: Int64, changeAddress: Address, utxos: [UnspentTransaction], comment: String) -> UnsignedTransaction {
-        // 3. 送金に必要なUTXOの選択
-        let (utxos, fee) = BCHHelper().selectTx(from: utxos, amount: amount)
+        // UTXOの選択
+        let (utxos, fee) = BCHHelper().selectTx(from: utxos)
         let totalAmount: Int64 = utxos.reduce(0) { $0 + $1.output.value }
         let change: Int64 = totalAmount - amount - fee
         
@@ -101,13 +101,12 @@ class DetailViewController: UIViewController {
         let toOutput = TransactionOutput(value: amount, lockingScript: lockScriptTo.data)
         let changeOutput = TransactionOutput(value: change, lockingScript: lockScriptChange.data)
         
-        // 5. UTXOとTransactionOutputを合わせて、UnsignedTransactionを作る
+        // UTXOとTransactionOutputを合わせて、UnsignedTransactionを作る
         let unsignedInputs = utxos.map { TransactionInput(previousOutput: $0.outpoint, signatureScript: Data(), sequence: UInt32.max) }
         let tx = Transaction(version: 1, inputs: unsignedInputs, outputs: [toOutput, changeOutput], lockTime: 0)
         return UnsignedTransaction(tx: tx, utxos: utxos)
     }
     
-    // 6. 署名する
     public func signTx(unsignedTx: UnsignedTransaction, keys: [PrivateKey]) -> Transaction {
         var inputsToSign = unsignedTx.tx.inputs
         var transactionToSign: Transaction {

@@ -25,10 +25,10 @@ class AdminViewController: UIViewController {
     private var targetAddress: Address!
     
     private func sendCoins(toAddress: Address, amount: Int64) {
-        // 1. おつり用のアドレスを決める
+        // おつり用のアドレスを決める
         let changeAddress: Address = AppController.shared.wallet!.publicKey.toCashaddr()
         
-        // 2. UTXOの取得
+        // UTXOの取得
         // 立候補者の公開鍵
         let legacyAddress: String = BCHHelper().createMultisigAddress(adminPubKey: Constant.adminPubKey,
                                                                       targetPubKey: Constant.targetPubKey).base58
@@ -38,11 +38,11 @@ class AdminViewController: UIViewController {
             }
             
             let utxos = unspentOutputs.map { $0.asUnspentTransaction() }
-            let unsignedTx = strongSelf.createUnsignedTx(toAddress: toAddress, amount: amount, changeAddress: changeAddress, utxos: utxos)
+            let unsignedTx = strongSelf.createUnsignedTx(toAddress: toAddress, changeAddress: changeAddress, utxos: utxos)
             let signedTx = strongSelf.signTx(unsignedTx: unsignedTx, keys: [AppController.shared.wallet!.privateKey])
             let rawTx = signedTx.serialized().hex
             
-            // 7. 署名されたtxをbroadcastする
+            // broadcast
             APIClient().postTx(withRawTx: rawTx, completionHandler: { (txid, error) in
                 if let txid = txid {
                     print("txid = \(txid)")
@@ -54,26 +54,23 @@ class AdminViewController: UIViewController {
         })
     }
     
-    public func createUnsignedTx(toAddress: Address, amount: Int64, changeAddress: Address, utxos: [UnspentTransaction]) -> UnsignedTransaction {
-        // 3. 送金に必要なUTXOの選択
-        let (utxos, fee) = BCHHelper().selectTx(from: utxos, amount: amount)
+    public func createUnsignedTx(toAddress: Address, changeAddress: Address, utxos: [UnspentTransaction]) -> UnsignedTransaction {
+        // UTXOの選択
+        let (utxos, fee) = BCHHelper().selectTx(from: utxos)
         let totalAmount: Int64 = utxos.reduce(0) { $0 + $1.output.value }
-        let change: Int64 = totalAmount - amount - fee
+        let amount: Int64 = totalAmount - fee
         
         let lockScriptTo = Script(address: toAddress)!
-        let lockScriptChange = Script(address: changeAddress)!
         
         let toOutput = TransactionOutput(value: amount, lockingScript: lockScriptTo.data)
-        let changeOutput = TransactionOutput(value: change, lockingScript: lockScriptChange.data)
         
-        // 5. UTXOとTransactionOutputを合わせて、UnsignedTransactionを作る
+        // UTXOとTransactionOutputを合わせて、UnsignedTransactionを作る
         let unsignedInputs = utxos.map { TransactionInput(previousOutput: $0.outpoint, signatureScript: Data(), sequence: UInt32.max) }
-        let tx = Transaction(version: 1, inputs: unsignedInputs, outputs: [toOutput, changeOutput], lockTime: 0)
+        let tx = Transaction(version: 1, inputs: unsignedInputs, outputs: [toOutput], lockTime: 0)
         
         return UnsignedTransaction(tx: tx, utxos: utxos)
     }
     
-    // 6. 署名する
     public func signTx(unsignedTx: UnsignedTransaction, keys: [PrivateKey]) -> Transaction {
         var inputsToSign = unsignedTx.tx.inputs
         var transactionToSign: Transaction {
@@ -83,6 +80,8 @@ class AdminViewController: UIViewController {
         // Signing
         let hashType = SighashType.BCH.ALL
         for (i, utxo) in unsignedTx.utxos.enumerated() {
+            // 本来であれば target(投票される側) が署名する前のトランザクションをブロードキャストする
+            // 今回、ライブラリがまだ対応していないとのことだったので、強制的に署名させるようにした
             let targetWallet = try! Wallet(wif: "cP1uBo6EsiBayFLu3E5mst5eDg7KNGRJbndbckRfV14votPZu4oU") //とりあえず
             
             let adminPubKey = Constant.adminPubKey
@@ -100,6 +99,7 @@ class AdminViewController: UIViewController {
             let txin = inputsToSign[i]
             
             let unlockingScript = try! Script()
+                // マルチシグの解除
                 .append(.OP_0)
                 .appendData(adminSig + UInt8(hashType))
                 .appendData(targetSig + UInt8(hashType))
@@ -111,11 +111,6 @@ class AdminViewController: UIViewController {
         }
         
         return transactionToSign
-    }
-    
-    private func createMultisigAddress(adminPubKey: PublicKey, targetPubKey: PublicKey) -> Address {
-        let multisig = Script(publicKeys: [adminPubKey, targetPubKey], signaturesRequired: 2)!
-        return multisig.toP2SH().standardAddress(network: .testnet)!
     }
     
     override func viewDidLoad() {
