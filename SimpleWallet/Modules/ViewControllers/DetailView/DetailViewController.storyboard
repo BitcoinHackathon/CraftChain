@@ -18,77 +18,124 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="0000112002_r" translatesAutoresizingMaskIntoConstraints="NO" id="kHS-ZW-k7b">
-                                <rect key="frame" x="16" y="111" width="64" height="84"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0000112002_r" translatesAutoresizingMaskIntoConstraints="NO" id="kHS-ZW-k7b">
+                                <rect key="frame" x="20" y="40" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="L6i-Ni-dfX"/>
+                                    <constraint firstAttribute="width" constant="50" id="ZXb-uE-rTE"/>
+                                </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="〇〇大学" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FAf-VO-uj9">
-                                <rect key="frame" x="88" y="131" width="70" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="〇〇大学" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FAf-VO-uj9">
+                                <rect key="frame" x="86" y="40" width="68" height="17"/>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="8/18 14:23" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fuv-gQ-q1p">
-                                <rect key="frame" x="166" y="131" width="202" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8/18 14:23" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fuv-gQ-q1p">
+                                <rect key="frame" x="162" y="40" width="96.5" height="17"/>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="〇〇大学第26回ミスコンです。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uV7-J7-ReX">
-                                <rect key="frame" x="88" y="160" width="246" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="〇〇大学第26回ミスコンです。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uV7-J7-ReX">
+                                <rect key="frame" x="86" y="65" width="273" height="17"/>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uTa-x3-tfH">
-                                <rect key="frame" x="156.5" y="247" width="62" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="佐藤さん"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uTa-x3-tfH">
+                                <rect key="frame" x="30" y="102" width="315" height="30"/>
+                                <color key="backgroundColor" red="0.18198148906230927" green="0.69426733255386353" blue="0.53024792671203613" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="佐藤さん">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="voteAction:" destination="33N-le-wLC" eventType="touchUpInside" id="ORg-Xl-smX"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Tf-wT-1Di">
-                                <rect key="frame" x="156" y="285" width="62" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="田中さん"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Tf-wT-1Di">
+                                <rect key="frame" x="30" y="152" width="315" height="30"/>
+                                <color key="backgroundColor" red="0.18198148906230927" green="0.69426733255386353" blue="0.53024792671203613" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="田中さん">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vR6-ZR-FTg">
-                                <rect key="frame" x="156" y="330" width="62" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="鈴木さん"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vR6-ZR-FTg">
+                                <rect key="frame" x="30" y="202" width="315" height="30"/>
+                                <color key="backgroundColor" red="0.18198148906230927" green="0.69426733255386353" blue="0.53024792671203613" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="鈴木さん">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IyP-ZM-D39">
-                                <rect key="frame" x="156" y="368" width="62" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="清水さん"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IyP-ZM-D39">
+                                <rect key="frame" x="30" y="252" width="315" height="30"/>
+                                <color key="backgroundColor" red="0.18198148906230927" green="0.69426733255386353" blue="0.53024792671203613" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="清水さん">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="300票" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRR-0U-Fui">
-                                <rect key="frame" x="31" y="516" width="49" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="300票" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRR-0U-Fui">
+                                <rect key="frame" x="20" y="395.5" width="70" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="f7K-ZE-HS2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="残り1日と12時間" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="anX-OQ-m5L">
-                                <rect key="frame" x="123" y="516" width="252" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RXj-dg-e6z">
-                                <rect key="frame" x="88" y="413" width="200" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RXj-dg-e6z">
+                                <rect key="frame" x="20" y="345.5" width="335" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="コメント" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZkY-Z9-gXU">
+                                <rect key="frame" x="20" y="312" width="68" height="17"/>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="残り1日と12時間" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="anX-OQ-m5L">
+                                <rect key="frame" x="110" y="395.5" width="245" height="17"/>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Vg4-im-3zk" firstAttribute="trailing" secondItem="7Tf-wT-1Di" secondAttribute="trailing" constant="30" id="0jg-jW-SJc"/>
+                            <constraint firstItem="Vg4-im-3zk" firstAttribute="trailing" secondItem="uTa-x3-tfH" secondAttribute="trailing" constant="30" id="42A-Lc-01s"/>
+                            <constraint firstItem="vR6-ZR-FTg" firstAttribute="leading" secondItem="Vg4-im-3zk" secondAttribute="leading" constant="30" id="4wq-ov-jAA"/>
+                            <constraint firstItem="FAf-VO-uj9" firstAttribute="top" secondItem="kHS-ZW-k7b" secondAttribute="top" id="5Bx-Oq-Q5h"/>
+                            <constraint firstItem="ZkY-Z9-gXU" firstAttribute="leading" secondItem="Vg4-im-3zk" secondAttribute="leading" constant="20" id="AMe-lC-AKu"/>
+                            <constraint firstItem="IyP-ZM-D39" firstAttribute="top" secondItem="vR6-ZR-FTg" secondAttribute="bottom" constant="20" id="Amu-kd-fSY"/>
+                            <constraint firstItem="7Tf-wT-1Di" firstAttribute="top" secondItem="uTa-x3-tfH" secondAttribute="bottom" constant="20" id="D4F-Kx-xcI"/>
+                            <constraint firstItem="RXj-dg-e6z" firstAttribute="leading" secondItem="ZkY-Z9-gXU" secondAttribute="leading" id="Dti-Ah-wO3"/>
+                            <constraint firstItem="Vg4-im-3zk" firstAttribute="trailing" secondItem="anX-OQ-m5L" secondAttribute="trailing" constant="20" id="HGA-im-z1G"/>
+                            <constraint firstItem="FAf-VO-uj9" firstAttribute="leading" secondItem="kHS-ZW-k7b" secondAttribute="trailing" constant="16" id="IHa-Fn-gcW"/>
+                            <constraint firstItem="VRR-0U-Fui" firstAttribute="leading" secondItem="Vg4-im-3zk" secondAttribute="leading" constant="20" id="J6w-sb-wD2"/>
+                            <constraint firstItem="VRR-0U-Fui" firstAttribute="top" secondItem="RXj-dg-e6z" secondAttribute="bottom" constant="20" id="KxO-LQ-oKY"/>
+                            <constraint firstItem="kHS-ZW-k7b" firstAttribute="leading" secondItem="Vg4-im-3zk" secondAttribute="leading" constant="20" id="NdA-BW-QUc"/>
+                            <constraint firstItem="ZkY-Z9-gXU" firstAttribute="top" secondItem="IyP-ZM-D39" secondAttribute="bottom" constant="30" id="Nw0-yc-ip5"/>
+                            <constraint firstItem="uTa-x3-tfH" firstAttribute="top" secondItem="uV7-J7-ReX" secondAttribute="bottom" constant="20" id="O5b-2f-AuO"/>
+                            <constraint firstItem="IyP-ZM-D39" firstAttribute="leading" secondItem="Vg4-im-3zk" secondAttribute="leading" constant="30" id="PVu-LH-mzz"/>
+                            <constraint firstItem="anX-OQ-m5L" firstAttribute="leading" secondItem="VRR-0U-Fui" secondAttribute="trailing" constant="20" id="RZr-mf-tGU"/>
+                            <constraint firstItem="Vg4-im-3zk" firstAttribute="trailing" secondItem="IyP-ZM-D39" secondAttribute="trailing" constant="30" id="SpJ-x3-e3O"/>
+                            <constraint firstItem="vR6-ZR-FTg" firstAttribute="top" secondItem="7Tf-wT-1Di" secondAttribute="bottom" constant="20" id="V2i-oB-qRH"/>
+                            <constraint firstItem="uV7-J7-ReX" firstAttribute="top" secondItem="FAf-VO-uj9" secondAttribute="bottom" constant="8" id="egl-5g-aP2"/>
+                            <constraint firstItem="anX-OQ-m5L" firstAttribute="centerY" secondItem="VRR-0U-Fui" secondAttribute="centerY" id="ezO-LT-JFt"/>
+                            <constraint firstItem="Vg4-im-3zk" firstAttribute="trailing" secondItem="RXj-dg-e6z" secondAttribute="trailing" constant="20" id="fTQ-ih-koP"/>
+                            <constraint firstItem="fuv-gQ-q1p" firstAttribute="centerY" secondItem="FAf-VO-uj9" secondAttribute="centerY" id="fUZ-GQ-UDR"/>
+                            <constraint firstItem="kHS-ZW-k7b" firstAttribute="top" secondItem="Vg4-im-3zk" secondAttribute="top" constant="20" id="gdQ-6Y-KOs"/>
+                            <constraint firstItem="Vg4-im-3zk" firstAttribute="trailing" secondItem="vR6-ZR-FTg" secondAttribute="trailing" constant="30" id="gwI-KH-mIQ"/>
+                            <constraint firstItem="fuv-gQ-q1p" firstAttribute="leading" secondItem="FAf-VO-uj9" secondAttribute="trailing" constant="8" id="kuK-NX-dqc"/>
+                            <constraint firstItem="uTa-x3-tfH" firstAttribute="leading" secondItem="Vg4-im-3zk" secondAttribute="leading" constant="30" id="nEi-vL-q6r"/>
+                            <constraint firstItem="uV7-J7-ReX" firstAttribute="leading" secondItem="FAf-VO-uj9" secondAttribute="leading" id="os2-mN-2uD"/>
+                            <constraint firstItem="Vg4-im-3zk" firstAttribute="trailing" secondItem="uV7-J7-ReX" secondAttribute="trailing" constant="16" id="sK2-zh-KAb"/>
+                            <constraint firstItem="RXj-dg-e6z" firstAttribute="top" secondItem="ZkY-Z9-gXU" secondAttribute="bottom" constant="16" id="vwN-fG-oEx"/>
+                            <constraint firstItem="7Tf-wT-1Di" firstAttribute="leading" secondItem="Vg4-im-3zk" secondAttribute="leading" constant="30" id="yn4-Uo-2pI"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Vg4-im-3zk"/>
                     </view>
                     <connections>

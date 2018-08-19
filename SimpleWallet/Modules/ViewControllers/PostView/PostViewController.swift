@@ -14,6 +14,7 @@ class PostViewController: UIViewController {
     
     static func make() -> UIViewController {
         let viewController = R.storyboard.postViewController().instantiateInitialViewController()!
+        viewController.tabBarItem = UITabBarItem(title: nil, image: R.image.create()!, selectedImage: nil)
         viewController.title = "投票の作成"
         return viewController
     }

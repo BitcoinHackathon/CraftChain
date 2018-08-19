@@ -27,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                HomeViewController.make(),
                                PostViewController.make(),
                                AdminViewController.make()]
+
         viewControllers.forEach {
             tabBarController.addChildViewController($0)
         }

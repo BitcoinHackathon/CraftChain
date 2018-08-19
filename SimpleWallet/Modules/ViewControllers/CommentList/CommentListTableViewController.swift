@@ -11,6 +11,7 @@ import UIKit
 class CommentListTableViewController: UITableViewController {
     static func make() -> CommentListTableViewController {
         let vc = CommentListTableViewController()
+        vc.tabBarItem = UITabBarItem(title: nil, image: R.image.chat()!, selectedImage: nil)
         vc.title = "コメントリスト"
         return vc
     }
