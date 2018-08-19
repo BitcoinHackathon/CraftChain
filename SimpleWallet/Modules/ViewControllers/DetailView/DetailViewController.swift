@@ -146,6 +146,12 @@ class DetailViewController: UIViewController {
             guard let me = self else { return }
             me.setup(post: me.post)
         }
+
+        let btns = [choice1Button, choice2Button, choice3Button, choice4Button]
+        btns.forEach {
+            $0?.layer.masksToBounds = true
+            $0?.layer.cornerRadius = 2.00
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -157,15 +163,9 @@ class DetailViewController: UIViewController {
     func setup(post: Post) {
         userNameLabel.text = post.userName
 
-        let diff = Int(post.deadline.timeIntervalSince(Date()))
-        let day = diff/24/60/60
-        let hour = diff/60/60
-        let min = diff/60 - hour*60
-        let sec = diff - min*60 - hour*60*60
-
         dateLabel.text = Post.dateFormatter.string(from: post.createdAt)
         descriptionLabel.text = post.description
-        remainDateLabel.text = "残り\(day)日と\(hour)時間\(min)分\(sec)秒"
+        remainDateLabel.text = "残り\(post.remainTime.day)日と\(post.remainTime.hour)時間\(post.remainTime.min)分\(post.remainTime.sec)秒"
         choice1Button.setTitle(post.choices.get(at: 0)?.description, for: .normal)
         choice2Button.setTitle(post.choices.get(at: 1)?.description, for: .normal)
         choice3Button.setTitle(post.choices.get(at: 2)?.description, for: .normal)

@@ -11,6 +11,7 @@ import UIKit
 class WalletViewController: UIViewController {
     static func make() -> WalletViewController {
         let vc = R.storyboard.walletViewController.instantiateInitialViewController()!
+        vc.tabBarItem = UITabBarItem(title: nil, image: R.image.wallet()!, selectedImage: nil)
         vc.title = "Wallet"
         return vc
     }

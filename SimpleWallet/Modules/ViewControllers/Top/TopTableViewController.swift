@@ -12,6 +12,7 @@ import RxSwift
 class TopTableViewController: UITableViewController {
     static func make() -> TopTableViewController {
         let vc = TopTableViewController()
+        vc.tabBarItem = UITabBarItem(title: nil, image: R.image.timeline()!, selectedImage: nil)
         vc.title = "タイムライン"
         return vc
     }

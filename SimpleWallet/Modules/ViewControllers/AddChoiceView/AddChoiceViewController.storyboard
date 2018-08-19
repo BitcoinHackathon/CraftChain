@@ -18,16 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="BCHの送付先" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o2i-fg-KS5">
-                                <rect key="frame" x="33" y="204" width="105" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3y4-kx-o5v">
-                                <rect key="frame" x="292" y="204" width="10" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BCHの送付先" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o2i-fg-KS5">
+                                <rect key="frame" x="20" y="150" width="105" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -39,27 +31,44 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="BCHのURLを入力する" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4NZ-HR-RdS">
-                                <rect key="frame" x="33" y="274" width="296" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="BCHのURLを入力する" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4NZ-HR-RdS">
+                                <rect key="frame" x="20" y="221" width="335" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="選択肢を入力する" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Vc-q0-bk8">
-                                <rect key="frame" x="110" y="91" width="154" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="選択肢を入力する" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Vc-q0-bk8">
+                                <rect key="frame" x="20" y="70" width="335" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GFc-OJ-089">
-                                <rect key="frame" x="159" y="353" width="56" height="56"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GFc-OJ-089">
+                                <rect key="frame" x="159" y="321" width="56" height="56"/>
                                 <state key="normal" image="check"/>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3y4-kx-o5v">
+                                <rect key="frame" x="175" y="150" width="8" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="EG1-nr-pHh" firstAttribute="trailing" secondItem="4Vc-q0-bk8" secondAttribute="trailing" constant="20" id="3QE-2F-vuE"/>
+                            <constraint firstItem="o2i-fg-KS5" firstAttribute="leading" secondItem="4Vc-q0-bk8" secondAttribute="leading" id="8I1-p7-DgE"/>
+                            <constraint firstItem="GFc-OJ-089" firstAttribute="top" secondItem="4NZ-HR-RdS" secondAttribute="bottom" constant="70" id="MBk-o6-de0"/>
+                            <constraint firstItem="4NZ-HR-RdS" firstAttribute="leading" secondItem="4Vc-q0-bk8" secondAttribute="leading" id="Qzg-x1-AG3"/>
+                            <constraint firstItem="3y4-kx-o5v" firstAttribute="centerY" secondItem="o2i-fg-KS5" secondAttribute="centerY" id="SE7-oL-RwU"/>
+                            <constraint firstItem="o2i-fg-KS5" firstAttribute="top" secondItem="4Vc-q0-bk8" secondAttribute="bottom" constant="50" id="V9d-GD-mdb"/>
+                            <constraint firstItem="4NZ-HR-RdS" firstAttribute="top" secondItem="o2i-fg-KS5" secondAttribute="bottom" constant="50" id="Xdu-N8-mhc"/>
+                            <constraint firstItem="4Vc-q0-bk8" firstAttribute="leading" secondItem="EG1-nr-pHh" secondAttribute="leading" constant="20" id="a7I-gj-2X6"/>
+                            <constraint firstItem="4Vc-q0-bk8" firstAttribute="top" secondItem="EG1-nr-pHh" secondAttribute="top" constant="50" id="dTA-ge-iDJ"/>
+                            <constraint firstItem="3y4-kx-o5v" firstAttribute="leading" secondItem="o2i-fg-KS5" secondAttribute="trailing" constant="50" id="qSD-4m-ubw"/>
+                            <constraint firstItem="GFc-OJ-089" firstAttribute="centerX" secondItem="Pka-vD-3M0" secondAttribute="centerX" id="taH-J5-7fo"/>
+                            <constraint firstItem="4NZ-HR-RdS" firstAttribute="trailing" secondItem="4Vc-q0-bk8" secondAttribute="trailing" id="vkH-6M-QoH"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="EG1-nr-pHh"/>
                     </view>
                     <navigationItem key="navigationItem" title="選択肢の追加" id="Kr7-2m-Yc5"/>

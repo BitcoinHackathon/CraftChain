@@ -28,6 +28,18 @@ struct Post {
         df.dateFormat = "MM/dd HH:mm:ss"
         return df
     }()
+
+    typealias RemainTime = (day: Int, hour: Int, min: Int, sec: Int)
+
+    var remainTime: RemainTime {
+        let diff = Int(deadline.timeIntervalSince(Date()))
+        let day = diff/24/60/60
+        let hour = diff/60/60
+        let min = diff/60 - hour*60
+        let sec = diff - min*60 - hour*60*60
+
+        return RemainTime(day, hour, min, sec)
+    }
 }
 
 extension Array where Element == Post.Choice {
