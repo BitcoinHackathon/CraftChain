@@ -29,6 +29,8 @@ class CommentListTableViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        results = []
+        tableView.reloadData()
         txs.forEach {
             APIClient().getTxDetail(withTxID: $0) { [weak self] in
                 guard let me = self else { return }

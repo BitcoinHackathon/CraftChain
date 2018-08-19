@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import BitcoinKit
 
 class AddChoiceViewController: UIViewController {
     static func make(choices: BehaviorRelay<[Post.Choice]>) -> UIViewController {
@@ -43,9 +44,12 @@ class AddChoiceViewController: UIViewController {
         output
             .registerChoice
             .drive(onNext: { [weak self] _ in
-                guard let wself = self, let description = wself.choiceTextField.text, let address = wself.BCHurlText.text else { return }
+                guard
+                    let wself = self,
+                    let description = wself.choiceTextField.text,
+                    let address = wself.BCHurlText.text else { return }
                 var arr = wself.choices.value
-                arr.append(Post.Choice(description: description, address: address))
+                arr.append(Post.Choice(description: description, address: address, pubKey: PrivateKey().publicKey()))
                 wself.choices.accept(arr)
                 wself.dismiss(animated: true)
             })

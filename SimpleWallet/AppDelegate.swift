@@ -25,7 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                WalletViewController.make(),
                                CommentListTableViewController.make(),
                                HomeViewController.make(),
-                               PostViewController.make()]
+                               PostViewController.make(),
+                               AdminViewController.make()]
         viewControllers.forEach {
             tabBarController.addChildViewController($0)
         }
@@ -35,9 +36,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func setup() {
-        let post = Post(choices: [Post.Choice(description: "選択肢1", address: "addr1"),
-                                  Post.Choice(description: "選択肢2", address: "addr2"),
-                                  Post.Choice(description: "選択肢3", address: "addr3")],
+        let post = Post(choices: [Post.Choice(description: "選択肢1", address: "addr1", pubKey: PrivateKey().publicKey()),
+                                  Post.Choice(description: "選択肢2", address: "addr2", pubKey: PrivateKey().publicKey()),
+                                  Post.Choice(description: "選択肢3", address: "addr3", pubKey: PrivateKey().publicKey())],
                         userName: "ゆーざ名",
                         createdAt: Date(),
                         description: "ですくり",

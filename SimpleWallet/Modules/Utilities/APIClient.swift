@@ -20,7 +20,8 @@ class APIClient {
             do {
                 let utxos = try JSONDecoder().decode([UnspentOutput].self, from: data)
                 completionHandler(utxos)
-            } catch {
+            } catch let error {
+                debugLog(error, level: .error)
                 print("Serialize Error")
             }
         })
@@ -33,7 +34,8 @@ class APIClient {
             do {
                 let transactions = try JSONDecoder().decode(Transactions.self, from: data)
                 completionHandler(transactions.transactions)
-            } catch {
+            } catch let error {
+                debugLog(error, level: .error)
                 print("Serialize Error")
             }
         }, queryItems: [URLQueryItem(name: "address", value: address)])
@@ -46,7 +48,8 @@ class APIClient {
             do {
                 let tx = try JSONDecoder().decode(CodableTx.self, from: data)
                 completionHandler(tx)
-            } catch {
+            } catch let error {
+                debugLog(error, level: .error)
                 print("Serialize Error")
             }
         })

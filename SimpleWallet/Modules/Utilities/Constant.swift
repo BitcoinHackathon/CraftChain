@@ -15,4 +15,5 @@ struct Constant {
     
     // 一旦、運営 = ログインユーザーとする
     static let adminPubKey: PublicKey = AppController.shared.wallet!.publicKey
+    static let targetPubKey = PrivateKey().publicKey()
 }
