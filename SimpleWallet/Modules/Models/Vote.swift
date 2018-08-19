@@ -21,3 +21,13 @@ struct Vote: Codable {
     }
 }
 
+extension Vote {
+    init?(from data: Data) {
+        do {
+            self = try JSONDecoder().decode(Vote.self, from: data)
+        } catch {
+            return nil
+        }
+
+    }
+}
