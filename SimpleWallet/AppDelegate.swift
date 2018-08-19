@@ -37,12 +37,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func setup() {
-        let post = Post(choices: [Post.Choice(description: "選択肢1", address: "addr1", pubKey: PrivateKey().publicKey()),
-                                  Post.Choice(description: "選択肢2", address: "addr2", pubKey: PrivateKey().publicKey()),
-                                  Post.Choice(description: "選択肢3", address: "addr3", pubKey: PrivateKey().publicKey())],
-                        userName: "ゆーざ名",
+        let post = Post(choices: [Post.Choice(description: "ビット子", address: "addr1", pubKey: PrivateKey().publicKey()),
+                                  Post.Choice(description: "イーサ子", address: "addr2", pubKey: PrivateKey().publicKey()),
+                                  Post.Choice(description: "リップルン", address: "addr3", pubKey: PrivateKey().publicKey())],
+                        userName: "立命館大学ミスコン",
                         createdAt: Date(),
-                        description: "ですくり",
+                        description: "今年のミス立命館を決めます",
                         deadline: Date().addingTimeInterval(2000),
                         voteCount: 0)
         PostManager.shared.append(post)
