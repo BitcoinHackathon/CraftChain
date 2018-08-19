@@ -47,6 +47,7 @@ class TopTableViewCell: UITableViewCell {
         post.choices.forEach {
             let label = UILabel()
             label.text = $0.description
+            label.textColor = .gray
             choicesStackView.addArrangedSubview(label)
         }
     }

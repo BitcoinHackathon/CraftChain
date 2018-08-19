@@ -51,6 +51,16 @@ class TopTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.cell, for: indexPath)!
         let post = posts[indexPath.row]
+
+        cell.gestureRecognizers?.removeAll()
+        let longPress = UILongPressGestureRecognizer(target: nil, action: nil)
+        longPress.rx.event
+            .debounce(0.1, scheduler: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
+                guard let me = self else { return }
+                me.navigationController?.pushViewController(ResultViewController.make(post: post), animated: true)
+            }).disposed(by: disposeBag)
+        cell.addGestureRecognizer(longPress)
         cell.set(post)
 
         return cell
