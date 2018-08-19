@@ -32,7 +32,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="cng-dy-3H6">
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cng-dy-3H6">
                         <rect key="frame" x="82" y="97.5" width="533" height="134"/>
                         <color key="backgroundColor" red="0.29085952043533325" green="0.20994566380977631" blue="0.14615128934383392" alpha="1" colorSpace="calibratedRGB"/>
                     </stackView>
@@ -96,6 +96,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="0000112002_r" width="840" height="1177"/>
+        <image name="0000112002_r" width="420" height="588"/>
     </resources>
 </document>
