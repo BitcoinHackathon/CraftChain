@@ -47,8 +47,8 @@ class HomeViewController: UITableViewController {
     
     private func updateUI() {
         getAddress()
-        //getBalance()
-        //getTxHistory()
+        getBalance()
+        getTxHistory()
     }
     
     // walletの作成
