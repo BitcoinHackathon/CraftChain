@@ -13,6 +13,7 @@
 		09B7BF5821288DB100D1232D /* AdminViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09B7BF5721288DB100D1232D /* AdminViewController.storyboard */; };
 		09B7BF5A2128926800D1232D /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B7BF592128926800D1232D /* Constant.swift */; };
 		09B7BF5C212892E600D1232D /* BCHHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B7BF5B212892E600D1232D /* BCHHelper.swift */; };
+		09B7BF5F21290DE200D1232D /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B7BF5E21290DE200D1232D /* Vote.swift */; };
 		0C26AB7B2126C59E00170732 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C26AB7A2126C59E00170732 /* AppDelegate.swift */; };
 		0C26AB822126C59F00170732 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C26AB812126C59F00170732 /* Assets.xcassets */; };
 		0C26AB852126C59F00170732 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C26AB832126C59F00170732 /* LaunchScreen.storyboard */; };
@@ -52,6 +53,7 @@
 		09B7BF5721288DB100D1232D /* AdminViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AdminViewController.storyboard; sourceTree = "<group>"; };
 		09B7BF592128926800D1232D /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		09B7BF5B212892E600D1232D /* BCHHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BCHHelper.swift; sourceTree = "<group>"; };
+		09B7BF5E21290DE200D1232D /* Vote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vote.swift; sourceTree = "<group>"; };
 		0C26AB772126C59E00170732 /* SimpleWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C26AB7A2126C59E00170732 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0C26AB812126C59F00170732 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				0C26AB932126C5BB00170732 /* Transaction.swift */,
 				0C26AB8D2126C5BB00170732 /* UnspentOutput.swift */,
 				6E61F59F2128595B007C696D /* Post.swift */,
+				09B7BF5E21290DE200D1232D /* Vote.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -457,6 +460,7 @@
 				0C26AB9A2126C5BB00170732 /* HomeViewController.swift in Sources */,
 				A04EA51521284A5C00709549 /* AddChoiceViewController.swift in Sources */,
 				0C26AB952126C5BB00170732 /* Extension.swift in Sources */,
+				09B7BF5F21290DE200D1232D /* Vote.swift in Sources */,
 				6E5E3C8021284F87005042F2 /* WalletViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

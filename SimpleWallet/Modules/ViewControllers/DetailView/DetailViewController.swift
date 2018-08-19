@@ -39,10 +39,10 @@ class DetailViewController: UIViewController {
         // 運営と投票される側でマルチシグを行う
         let multisig: Address = BCHHelper().createMultisigAddress(adminPubKey: Constant.adminPubKey,
                                                                   targetPubKey: post.choices[0].pubKey) //決め打ち
-        sendCoins(toAddress: multisig, amount: Constant.voteAmount, comment: commentText.text!)
+        sendCoins(toAddress: multisig, amount: Constant.voteAmount)
     }
     
-    private func sendCoins(toAddress: Address, amount: Int64, comment: String) {
+    private func sendCoins(toAddress: Address, amount: Int64) {
         // おつり用のアドレスを決める
         let changeAddress: Address = AppController.shared.wallet!.publicKey.toCashaddr()
         
@@ -53,7 +53,7 @@ class DetailViewController: UIViewController {
                 return
             }
             let utxos = unspentOutputs.map { $0.asUnspentTransaction() }
-            let unsignedTx = strongSelf.createUnsignedTx(toAddress: toAddress, amount: amount, changeAddress: changeAddress, utxos: utxos, comment: comment)
+            let unsignedTx = strongSelf.createUnsignedTx(toAddress: toAddress, amount: amount, changeAddress: changeAddress, utxos: utxos)
             let signedTx = strongSelf.signTx(unsignedTx: unsignedTx, keys: [AppController.shared.wallet!.privateKey])
             let rawTx = signedTx.serialized().hex
             
@@ -69,7 +69,7 @@ class DetailViewController: UIViewController {
         })
     }
     
-    public func createUnsignedTx(toAddress: Address, amount: Int64, changeAddress: Address, utxos: [UnspentTransaction], comment: String) -> UnsignedTransaction {
+    public func createUnsignedTx(toAddress: Address, amount: Int64, changeAddress: Address, utxos: [UnspentTransaction]) -> UnsignedTransaction {
         // UTXOの選択
         let (utxos, fee) = BCHHelper().selectTx(from: utxos)
         let totalAmount: Int64 = utxos.reduce(0) { $0 + $1.output.value }
@@ -98,12 +98,20 @@ class DetailViewController: UIViewController {
                 .append(.OP_EQUALVERIFY)
                 .append(.OP_CHECKSIG)
         
+        // TODO: hash値検討
+        let opReturnJson = Vote(hash: "hoge", message: commentText.text!)
+        
+        let opReturnScript = try! Script()
+            .append(.OP_RETURN)
+            .appendData(opReturnJson.toJson().data(using: .utf8)!)
+        
         let toOutput = TransactionOutput(value: amount, lockingScript: lockScriptTo.data)
         let changeOutput = TransactionOutput(value: change, lockingScript: lockScriptChange.data)
+        let opReturnOutput = TransactionOutput(value: 0, lockingScript: opReturnScript.data)
         
         // UTXOとTransactionOutputを合わせて、UnsignedTransactionを作る
         let unsignedInputs = utxos.map { TransactionInput(previousOutput: $0.outpoint, signatureScript: Data(), sequence: UInt32.max) }
-        let tx = Transaction(version: 1, inputs: unsignedInputs, outputs: [toOutput, changeOutput], lockTime: 0)
+        let tx = Transaction(version: 1, inputs: unsignedInputs, outputs: [toOutput, changeOutput, opReturnOutput], lockTime: 0)
         return UnsignedTransaction(tx: tx, utxos: utxos)
     }
     
@@ -150,6 +158,8 @@ class DetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
+        // 暫定で locktime をセット
+        // 本来は選挙時間をセットする
         lockTimeString = "2018-08-20 18:00:00"
     }
 
