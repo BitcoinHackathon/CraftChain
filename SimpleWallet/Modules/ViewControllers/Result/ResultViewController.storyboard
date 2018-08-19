@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="33N-le-wLC">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Result View Controller-->
+        <scene sceneID="N3h-bS-Eri">
+            <objects>
+                <viewController id="33N-le-wLC" customClass="ResultViewController" customModule="SimpleWallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gOa-fd-Ht4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0000112002_r" translatesAutoresizingMaskIntoConstraints="NO" id="kHS-ZW-k7b">
+                                <rect key="frame" x="20" y="40" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="L6i-Ni-dfX"/>
+                                    <constraint firstAttribute="width" constant="50" id="ZXb-uE-rTE"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="〇〇大学" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FAf-VO-uj9">
+                                <rect key="frame" x="86" y="40" width="68" height="17"/>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8/18 14:23" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fuv-gQ-q1p">
+                                <rect key="frame" x="162" y="40" width="96.5" height="17"/>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="〇〇大学第26回ミスコンです。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uV7-J7-ReX">
+                                <rect key="frame" x="86" y="65" width="273" height="17"/>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uTa-x3-tfH">
+                                <rect key="frame" x="30" y="102" width="85" height="26"/>
+                                <color key="backgroundColor" red="0.18198148906230927" green="0.69426733255386353" blue="0.53024792671203613" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="85" id="p1I-ZO-Nkr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="14"/>
+                                <state key="normal" title="佐藤さん">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="voteAction:" destination="33N-le-wLC" eventType="touchUpInside" id="ORg-Xl-smX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Tf-wT-1Di">
+                                <rect key="frame" x="30" y="148" width="124" height="26"/>
+                                <color key="backgroundColor" red="0.18198148906230927" green="0.69426733255386353" blue="0.53024792671203613" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="124" id="ZOx-Rw-7MB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="14"/>
+                                <state key="normal" title="田中さん">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vR6-ZR-FTg">
+                                <rect key="frame" x="30" y="194" width="70" height="26"/>
+                                <color key="backgroundColor" red="0.18198148906230927" green="0.69426733255386353" blue="0.53024792671203613" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="O2H-vF-v6X"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="14"/>
+                                <state key="normal" title="鈴木さん">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IyP-ZM-D39">
+                                <rect key="frame" x="30" y="240" width="99" height="26"/>
+                                <color key="backgroundColor" red="0.18198148906230927" green="0.69426733255386353" blue="0.53024792671203613" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="99" id="4RZ-eX-BAV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="14"/>
+                                <state key="normal" title="清水さん">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="300票" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRR-0U-Fui">
+                                <rect key="frame" x="20" y="296" width="70" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="f7K-ZE-HS2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25% 75票" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="noW-5S-LtB">
+                                <rect key="frame" x="284" y="105" width="75" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="35% 105票" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kGJ-bz-aVb">
+                                <rect key="frame" x="275" y="150.5" width="84" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10% 30票" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESN-xP-hh7">
+                                <rect key="frame" x="284" y="196.5" width="75" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30% 90票" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CvQ-v6-xdj">
+                                <rect key="frame" x="282" y="243" width="77" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Vg4-im-3zk" firstAttribute="trailing" secondItem="ESN-xP-hh7" secondAttribute="trailing" constant="16" id="1bv-vb-PRo"/>
+                            <constraint firstItem="vR6-ZR-FTg" firstAttribute="leading" secondItem="Vg4-im-3zk" secondAttribute="leading" constant="30" id="4wq-ov-jAA"/>
+                            <constraint firstItem="FAf-VO-uj9" firstAttribute="top" secondItem="kHS-ZW-k7b" secondAttribute="top" id="5Bx-Oq-Q5h"/>
+                            <constraint firstItem="IyP-ZM-D39" firstAttribute="top" secondItem="vR6-ZR-FTg" secondAttribute="bottom" constant="20" id="Amu-kd-fSY"/>
+                            <constraint firstItem="CvQ-v6-xdj" firstAttribute="centerY" secondItem="IyP-ZM-D39" secondAttribute="centerY" id="CvY-ix-9mW"/>
+                            <constraint firstItem="7Tf-wT-1Di" firstAttribute="top" secondItem="uTa-x3-tfH" secondAttribute="bottom" constant="20" id="D4F-Kx-xcI"/>
+                            <constraint firstItem="FAf-VO-uj9" firstAttribute="leading" secondItem="kHS-ZW-k7b" secondAttribute="trailing" constant="16" id="IHa-Fn-gcW"/>
+                            <constraint firstItem="VRR-0U-Fui" firstAttribute="leading" secondItem="Vg4-im-3zk" secondAttribute="leading" constant="20" id="J6w-sb-wD2"/>
+                            <constraint firstItem="kHS-ZW-k7b" firstAttribute="leading" secondItem="Vg4-im-3zk" secondAttribute="leading" constant="20" id="NdA-BW-QUc"/>
+                            <constraint firstItem="uTa-x3-tfH" firstAttribute="top" secondItem="uV7-J7-ReX" secondAttribute="bottom" constant="20" id="O5b-2f-AuO"/>
+                            <constraint firstItem="noW-5S-LtB" firstAttribute="centerY" secondItem="uTa-x3-tfH" secondAttribute="centerY" id="OFj-C5-Q2c"/>
+                            <constraint firstItem="IyP-ZM-D39" firstAttribute="leading" secondItem="Vg4-im-3zk" secondAttribute="leading" constant="30" id="PVu-LH-mzz"/>
+                            <constraint firstItem="Vg4-im-3zk" firstAttribute="trailing" secondItem="kGJ-bz-aVb" secondAttribute="trailing" constant="16" id="Uaw-GF-Y2a"/>
+                            <constraint firstItem="vR6-ZR-FTg" firstAttribute="top" secondItem="7Tf-wT-1Di" secondAttribute="bottom" constant="20" id="V2i-oB-qRH"/>
+                            <constraint firstItem="ESN-xP-hh7" firstAttribute="centerY" secondItem="vR6-ZR-FTg" secondAttribute="centerY" id="aY5-eB-N3f"/>
+                            <constraint firstItem="Vg4-im-3zk" firstAttribute="trailing" secondItem="noW-5S-LtB" secondAttribute="trailing" constant="16" id="bmr-v3-Vdi"/>
+                            <constraint firstItem="kGJ-bz-aVb" firstAttribute="centerY" secondItem="7Tf-wT-1Di" secondAttribute="centerY" id="bxT-vu-lno"/>
+                            <constraint firstItem="uV7-J7-ReX" firstAttribute="top" secondItem="FAf-VO-uj9" secondAttribute="bottom" constant="8" id="egl-5g-aP2"/>
+                            <constraint firstItem="fuv-gQ-q1p" firstAttribute="centerY" secondItem="FAf-VO-uj9" secondAttribute="centerY" id="fUZ-GQ-UDR"/>
+                            <constraint firstItem="kHS-ZW-k7b" firstAttribute="top" secondItem="Vg4-im-3zk" secondAttribute="top" constant="20" id="gdQ-6Y-KOs"/>
+                            <constraint firstItem="VRR-0U-Fui" firstAttribute="top" secondItem="IyP-ZM-D39" secondAttribute="bottom" constant="30" id="ibG-4m-s3m"/>
+                            <constraint firstItem="fuv-gQ-q1p" firstAttribute="leading" secondItem="FAf-VO-uj9" secondAttribute="trailing" constant="8" id="kuK-NX-dqc"/>
+                            <constraint firstItem="uTa-x3-tfH" firstAttribute="leading" secondItem="Vg4-im-3zk" secondAttribute="leading" constant="30" id="nEi-vL-q6r"/>
+                            <constraint firstItem="uV7-J7-ReX" firstAttribute="leading" secondItem="FAf-VO-uj9" secondAttribute="leading" id="os2-mN-2uD"/>
+                            <constraint firstItem="Vg4-im-3zk" firstAttribute="trailing" secondItem="CvQ-v6-xdj" secondAttribute="trailing" constant="16" id="r6C-M3-ALQ"/>
+                            <constraint firstItem="Vg4-im-3zk" firstAttribute="trailing" secondItem="uV7-J7-ReX" secondAttribute="trailing" constant="16" id="sK2-zh-KAb"/>
+                            <constraint firstItem="7Tf-wT-1Di" firstAttribute="leading" secondItem="Vg4-im-3zk" secondAttribute="leading" constant="30" id="yn4-Uo-2pI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Vg4-im-3zk"/>
+                    </view>
+                    <connections>
+                        <outlet property="choice1Button" destination="uTa-x3-tfH" id="bYE-U8-9at"/>
+                        <outlet property="choice2Button" destination="7Tf-wT-1Di" id="b4A-fa-EYf"/>
+                        <outlet property="choice3Button" destination="vR6-ZR-FTg" id="ZoE-0a-mx2"/>
+                        <outlet property="choice4Button" destination="IyP-ZM-D39" id="ycw-6N-gc3"/>
+                        <outlet property="dateLabel" destination="fuv-gQ-q1p" id="xC2-OX-HSg"/>
+                        <outlet property="descriptionLabel" destination="uV7-J7-ReX" id="nRY-Tc-Svd"/>
+                        <outlet property="userNameLabel" destination="FAf-VO-uj9" id="eyw-gl-Jne"/>
+                        <outlet property="voteCountLabel" destination="VRR-0U-Fui" id="NWc-pe-DaP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O84-1v-MZG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="76" y="77.811094452773617"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="0000112002_r" width="420" height="588"/>
+    </resources>
+</document>
